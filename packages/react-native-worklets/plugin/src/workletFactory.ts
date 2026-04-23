@@ -13,6 +13,7 @@ import {
   arrayExpression,
   assignmentExpression,
   blockStatement,
+  callExpression,
   cloneNode,
   expressionStatement,
   functionExpression,
@@ -166,6 +167,22 @@ export function makeWorkletFactory(
   const shouldIncludeInitData =
     !state.opts.omitNativeOnlyData && !state.opts.bundleMode;
 
+  const symbolForWorkletCode = callExpression(
+    memberExpression(identifier('Symbol'), identifier('for')),
+    [stringLiteral('__reanimated_workletCode')]
+  );
+
+  const workletCodeProperty = objectProperty(
+    symbolForWorkletCode,
+    stringLiteral(funString),
+    true
+  );
+
+  const reanimatedWorkletCodeProperty = objectProperty(
+    identifier('__reanimated_workletCodeWrapper'),
+    objectExpression([workletCodeProperty])
+  );
+
   const shouldEmitBytecode =
     !!state.opts.hermesBytecode && isRelease(state) && shouldIncludeInitData;
 
@@ -188,7 +205,7 @@ export function makeWorkletFactory(
             )
           ),
         ]
-      : [objectProperty(identifier('code'), stringLiteral(funString))]
+      : [reanimatedWorkletCodeProperty]
   );
 
   const shouldInjectLocation = !isRelease(state);

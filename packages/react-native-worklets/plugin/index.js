@@ -1206,13 +1206,16 @@ var require_workletFactory = __commonJS({
       (0, assert_1.strict)(pathForStringDefinitions.parentPath, "`pathForStringDefinitions.parentPath` is null.");
       const initDataId = pathForStringDefinitions.parentPath.scope.generateUidIdentifier(`worklet_${workletHash}_init_data`);
       const shouldIncludeInitData = !state.opts.omitNativeOnlyData && !state.opts.bundleMode;
+      const symbolForWorkletCode = (0, types_12.callExpression)((0, types_12.memberExpression)((0, types_12.identifier)("Symbol"), (0, types_12.identifier)("for")), [(0, types_12.stringLiteral)("__reanimated_workletCode")]);
+      const workletCodeProperty = (0, types_12.objectProperty)(symbolForWorkletCode, (0, types_12.stringLiteral)(funString), true);
+      const reanimatedWorkletCodeProperty = (0, types_12.objectProperty)((0, types_12.identifier)("__reanimated_workletCodeWrapper"), (0, types_12.objectExpression)([workletCodeProperty]));
       const shouldEmitBytecode = !!state.opts.hermesBytecode && (0, utils_1.isRelease)(state) && shouldIncludeInitData;
       const bytecode = shouldEmitBytecode ? (0, hermesBytecode_1.compileWorkletToHbc)(funString, workletHash, state) : null;
       const initDataObjectExpression = (0, types_12.objectExpression)(bytecode ? [
         (0, types_12.objectProperty)((0, types_12.identifier)("bytecode"), (0, types_12.memberExpression)((0, types_12.newExpression)((0, types_12.identifier)("Uint8Array"), [
           (0, types_12.arrayExpression)(Array.from(bytecode, (byte) => (0, types_12.numericLiteral)(byte)))
         ]), (0, types_12.identifier)("buffer")))
-      ] : [(0, types_12.objectProperty)((0, types_12.identifier)("code"), (0, types_12.stringLiteral)(funString))]);
+      ] : [reanimatedWorkletCodeProperty]);
       const shouldInjectLocation = !(0, utils_1.isRelease)(state);
       if (shouldInjectLocation) {
         let location = state.file.opts.filename;
