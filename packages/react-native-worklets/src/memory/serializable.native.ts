@@ -566,13 +566,11 @@ function cloneSet(value: Set<unknown>): SerializableRef<Set<unknown>> {
   return clone;
 }
 
-function cloneRegExp(value: RegExp): SerializableRef<RegExp> {
-  const clone = WorkletsModule.createSerializableRegExp(
-    value.source,
-    value.flags
+function cloneRegExp(_value: RegExp): SerializableRef<RegExp> {
+  // disabled, contact appsec if needed: https://github.com/ExodusMovement/exodus-mobile/pull/24699#issuecomment-2709694172
+  throw new Error(
+    '[Worklets] RegExp has been disabled. Contact AppSec if needed.'
   );
-  serializableMappingCache.set(value, clone);
-  return clone;
 }
 
 function cloneError(value: Error): SerializableRef<Error> {
