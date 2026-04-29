@@ -11,12 +11,13 @@ import type {
 import { isLength, isNumber } from '../../utils/guards';
 import { processColor } from './colors';
 
-// Capture filter functions and their content eg "brightness(0.5) opacity(1)" => [["brightness(0.5)", "brightness", "0.5"], ["opacity(1)", "opacity", "1"]]
-const FILTER_REGEX = /([\w-]+)\(([^()]*|\([^()]*\)|[^()]*\([^()]*\)[^()]*)\)/g;
-// Capture two groups: current transform value and optional unit -> "21.37px" => ["21.37px", "21.37", "px"] + accepts scientific notation like 'e-14'
-const FILTER_VALUE_REGEX = /^([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)([a-z%]*)$/;
-// Capture drop-shadow parts "10px 5px 5px #888888" => ["10px", "5px", "5px", "#888888"]
-const DROP_SHADOW_REGEX = /[^,\s()]+(?:\([^()]*\))?/g;
+// NOTE: The RegExp literals previously declared here at module level
+// (FILTER_REGEX, FILTER_VALUE_REGEX, DROP_SHADOW_REGEX) are now declared
+// inside the worklet bodies that use them. The Exodus AppSec hardening in
+// `@exodus/react-native-worklets` blocks cloning of captured RegExp
+// instances during worklet serialization; keeping the literal inside the
+// worklet keeps it in the worklet's serialized source so each runtime
+// evaluates a fresh RegExp instance.
 
 type SingleFilterValue = {
   numberValue: number;
@@ -54,6 +55,10 @@ const LENGTH_MAPPINGS = ['offsetX', 'offsetY', 'standardDeviation'] as const;
 
 const parseDropShadowString = (value: string): DropShadowValue | null => {
   'worklet';
+  // Capture two groups: current transform value and optional unit -> "21.37px" => ["21.37px", "21.37", "px"] + accepts scientific notation like 'e-14'
+  const FILTER_VALUE_REGEX = /^([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)([a-z%]*)$/;
+  // Capture drop-shadow parts "10px 5px 5px #888888" => ["10px", "5px", "5px", "#888888"]
+  const DROP_SHADOW_REGEX = /[^,\s()]+(?:\([^()]*\))?/g;
   const match = value.match(DROP_SHADOW_REGEX) ?? [];
   const result: DropShadowValue = { offsetX: 0, offsetY: 0 };
   let foundLengthsCount = 0;
@@ -114,6 +119,8 @@ const parseFilterProperty = (
   context: ValueProcessorContext | undefined
 ): ParsedFilterFunction | null => {
   'worklet';
+  // Capture two groups: current transform value and optional unit -> "21.37px" => ["21.37px", "21.37", "px"] + accepts scientific notation like 'e-14'
+  const FILTER_VALUE_REGEX = /^([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)([a-z%]*)$/;
   // We need to handle dropShadow separately because of its complex structure
   if (filterName === 'dropShadow') {
     const dropShadow = parseDropShadow(
@@ -180,6 +187,9 @@ const parseFilterString = (
   context: ValueProcessorContext | undefined
 ): FilterArray => {
   'worklet';
+  // Capture filter functions and their content eg "brightness(0.5) opacity(1)" => [["brightness(0.5)", "brightness", "0.5"], ["opacity(1)", "opacity", "1"]]
+  const FILTER_REGEX =
+    /([\w-]+)\(([^()]*|\([^()]*\)|[^()]*\([^()]*\)[^()]*)\)/g;
   const matches = Array.from(value.matchAll(FILTER_REGEX));
 
   const filterArray: FilterArray = [];
