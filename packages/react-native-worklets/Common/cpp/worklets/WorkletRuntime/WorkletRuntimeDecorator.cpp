@@ -248,7 +248,7 @@ void WorkletRuntimeDecorator::decorate(
           }));
   rt.global().setProperty(rt, "performance", performance);
 
-#if JS_RUNTIME_HERMES
+#if JS_RUNTIME_HERMES && !defined(NDEBUG)
   rt.global().setProperty(
       rt,
       "_startProfiling",
@@ -265,7 +265,7 @@ void WorkletRuntimeDecorator::decorate(
     std::string path = stopProfiling(rt);
     return jsi::String::createFromUtf8(rt, path);
   });
-#endif // JS_RUNTIME_HERMES
+#endif // JS_RUNTIME_HERMES && !defined(NDEBUG)
 
   jsi_utils::installJsiFunction(
       rt,
