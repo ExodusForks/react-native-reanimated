@@ -19,6 +19,9 @@ jsi::Symbol workletCodeSymbol(jsi::Runtime &rt) {
 }
 
 bool isWorkletCodeWrapper(jsi::Runtime &rt, const jsi::Object &object, const jsi::Symbol &sym) {
+  if (!object.hasProperty(rt, jsi::PropNameID::forSymbol(rt, sym))) {
+    return false;
+  }
   jsi::Object objectCtor = rt.global().getPropertyAsObject(rt, "Object");
   jsi::Array ownNames =
       objectCtor.getPropertyAsFunction(rt, "getOwnPropertyNames").call(rt, object).asObject(rt).asArray(rt);
