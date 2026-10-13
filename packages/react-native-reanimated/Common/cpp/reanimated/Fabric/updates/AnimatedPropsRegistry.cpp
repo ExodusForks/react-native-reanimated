@@ -2,7 +2,9 @@
 #include <reanimated/Tools/FeatureFlags.h>
 
 #include <memory>
+#include <mutex>
 #include <utility>
+#include <vector>
 
 namespace reanimated {
 
@@ -15,21 +17,31 @@ static inline std::shared_ptr<const ShadowNode> shadowNodeFromValue(
 void AnimatedPropsRegistry::update(jsi::Runtime &rt, const jsi::Value &operations, const double timestamp) {
   auto operationsArray = operations.asObject(rt).asArray(rt);
 
+  UpdatesBatch parsedUpdates;
+  parsedUpdates.reserve(operationsArray.size(rt));
+
   for (size_t i = 0, length = operationsArray.size(rt); i < length; ++i) {
     auto item = operationsArray.getValueAtIndex(rt, i).asObject(rt);
     auto shadowNodeWrapper = item.getProperty(rt, "shadowNodeWrapper");
     auto shadowNode = shadowNodeFromValue(rt, shadowNodeWrapper);
 
     const jsi::Value &updates = item.getProperty(rt, "updates");
-    addUpdatesToBatch(shadowNode, jsi::dynamicFromValue(rt, updates));
+    parsedUpdates.emplace_back(std::move(shadowNode), jsi::dynamicFromValue(rt, updates));
+  }
 
-    if (RuntimeFeatureFlags::forceReactRenderForSettledAnimations()) {
+  const bool trackTimestamps = RuntimeFeatureFlags::forceReactRenderForSettledAnimations();
+
+  std::lock_guard<std::mutex> lock{mutex_};
+  for (auto &[shadowNode, props] : parsedUpdates) {
+    if (trackTimestamps) {
       timestampMap_[shadowNode->getTag()] = timestamp;
     }
+    addUpdatesToBatch(shadowNode, props);
   }
 }
 
 void AnimatedPropsRegistry::remove(const Tag tag) {
+  std::lock_guard<std::mutex> lock{mutex_};
   updatesRegistry_.erase(tag);
   timestampMap_.erase(tag);
 }
