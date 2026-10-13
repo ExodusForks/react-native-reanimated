@@ -88,21 +88,6 @@ inline jsi::Value createWorkletRuntime(
   return jsi::Object::createFromHostObject(originRuntime, workletRuntime);
 }
 
-inline jsi::Value propagateModuleUpdate(
-    const std::shared_ptr<RuntimeManager> &runtimeManager,
-    const std::string &code,
-    const std::string &sourceUrl) {
-  const auto runtimes = runtimeManager->getAllRuntimes();
-
-  for (const auto &runtime : runtimes) {
-    runtime->runSync([code, sourceUrl](jsi::Runtime &rt) -> void {
-      const auto buffer = std::make_shared<jsi::StringBuffer>(code);
-      rt.evaluateJavaScript(buffer, sourceUrl);
-    });
-  }
-  return jsi::Value::undefined();
-}
-
 inline jsi::Value reportFatalErrorOnJS(
     const std::shared_ptr<JSScheduler> &jsScheduler,
     const std::string &message,
@@ -215,8 +200,6 @@ std::vector<jsi::PropNameID> JSIWorkletsModuleProxy::getPropertyNames(jsi::Runti
   propertyNames.emplace_back(jsi::PropNameID::forAscii(rt, "synchronizableUnlock"));
 
   propertyNames.emplace_back(jsi::PropNameID::forAscii(rt, "createShareable"));
-
-  propertyNames.emplace_back(jsi::PropNameID::forAscii(rt, "propagateModuleUpdate"));
 
   propertyNames.emplace_back(jsi::PropNameID::forAscii(rt, "getUIRuntimeHolder"));
   propertyNames.emplace_back(jsi::PropNameID::forAscii(rt, "getUISchedulerHolder"));
@@ -571,20 +554,6 @@ jsi::Value JSIWorkletsModuleProxy::get(jsi::Runtime &rt, const jsi::PropNameID &
           const auto shareable =
               std::make_shared<Shareable>(hostRuntime, initial, initSynchronously, decorateHost, decorateGuest);
           return SerializableJSRef::newNativeStateObject(rt, shareable);
-        });
-  }
-
-  if (name == "propagateModuleUpdate") {
-    return jsi::Function::createFromHostFunction(
-        rt,
-        propName,
-        2,
-        [runtimeManager = runtimeManager_](
-            jsi::Runtime &rt, const jsi::Value &thisValue, const jsi::Value *args, size_t count) {
-          return propagateModuleUpdate(
-              runtimeManager,
-              /* code */ args[0].asString(rt).utf8(rt),
-              /* sourceURL */ args[1].asString(rt).utf8(rt));
         });
   }
 
