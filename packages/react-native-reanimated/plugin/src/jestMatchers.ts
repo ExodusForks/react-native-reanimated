@@ -109,9 +109,10 @@ expect.extend({
 });
 
 function getWorkletString(code: string) {
-  // Regular expression pattern to find the `code` field in `initData`.
+  // Match the serialized code in initData's symbol-keyed wrapper.
   // @ts-ignore This regex works well in Jest.
-  const pattern = /code: "((?:[^"\\]|\\.)*)"/gs;
+  const pattern =
+    /Symbol\.for\("__reanimated_workletCode"\), "((?:[^"\\]|\\.)*)"/gs;
   // const matches = received.match(pattern);
   return code.match(pattern);
 }

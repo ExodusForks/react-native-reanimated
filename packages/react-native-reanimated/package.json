@@ -82,6 +82,7 @@
   "dependencies": {
     "@babel/generator": "^7.20.0",
     "@babel/plugin-transform-arrow-functions": "^7.0.0-0",
+    "@babel/plugin-transform-block-scoping": "^7.25.0",
     "@babel/plugin-transform-class-properties": "^7.0.0-0",
     "@babel/plugin-transform-classes": "^7.0.0-0",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.0.0-0",

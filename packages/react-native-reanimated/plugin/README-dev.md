@@ -5,6 +5,8 @@ If you want to make any changes to Reanimated Babel plugin, do not edit anything
 
 Use of `yarn watch` in `plugin/` is highly recommended, as it will automatically compile and bundle your changes for testing and committing.
 
+From `packages/react-native-reanimated`, run `yarn test __tests__/plugin-block-scoping.test.ts --runInBand` for the block-scoping regressions. Set `HERMES_BINARY` to a Hermes CLI executable to also execute the serialized worklets on Hermes and compare their results with Node.
+
 If you want to compile `lib/` files only, use `yarn tsc` (or if you want to keep them).
 If you want to build the plugin but without using explicit `yarn`, do `yarn generate` instead.
 
