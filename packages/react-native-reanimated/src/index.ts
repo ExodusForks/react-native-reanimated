@@ -212,7 +212,8 @@ export {
   FlipOutYLeft,
   FlipOutYRight,
   JumpingTransition,
-  Keyframe,
+  // Security: Keyframe export disabled to prevent prototype pollution (0074)
+  // Keyframe,
   // Transitions
   Layout,
   LightSpeedInLeft,

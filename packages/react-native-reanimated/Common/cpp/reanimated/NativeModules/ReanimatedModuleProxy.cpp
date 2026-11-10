@@ -343,7 +343,12 @@ jsi::Value ReanimatedModuleProxy::getStaticFeatureFlag(jsi::Runtime &rt, const j
 
 jsi::Value
 ReanimatedModuleProxy::setDynamicFeatureFlag(jsi::Runtime &rt, const jsi::Value &name, const jsi::Value &value) {
-  reanimated::DynamicFeatureFlags::setFlag(name.asString(rt).utf8(rt), value.asBool());
+  const auto flagName = name.asString(rt).utf8(rt);
+  const auto flagValue = value.asBool();
+  if (flagName == "FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS") {
+    reanimated::RuntimeFeatureFlags::setForceReactRenderForSettledAnimations(flagValue);
+  }
+  reanimated::DynamicFeatureFlags::setFlag(flagName, flagValue);
   return jsi::Value::undefined();
 }
 
@@ -493,17 +498,13 @@ void ReanimatedModuleProxy::applyCSSAnimations(
     }
   }
 
-  {
-    auto lock = cssAnimationsRegistry_->lock();
-    cssAnimationsRegistry_->apply(
-        rt, shadowNode, updates.animationNames, newAnimations, updates.settingsUpdates, timestamp);
-  }
+  cssAnimationsRegistry_->apply(
+      rt, shadowNode, updates.animationNames, newAnimations, updates.settingsUpdates, timestamp);
 
   maybeRunCSSLoop();
 }
 
 void ReanimatedModuleProxy::unregisterCSSAnimations(const jsi::Value &viewTag) {
-  auto lock = cssAnimationsRegistry_->lock();
   cssAnimationsRegistry_->remove(viewTag.asNumber());
 }
 
@@ -514,36 +515,29 @@ void ReanimatedModuleProxy::runCSSTransition(
   auto shadowNode = shadowNodeFromValue(rt, shadowNodeWrapper);
   const auto config = parseCSSTransitionConfig(rt, transitionConfig);
 
-  {
-    auto lock = cssTransitionsRegistry_->lock();
-    cssTransitionsRegistry_->run(rt, shadowNode, config);
-  }
+  cssTransitionsRegistry_->run(rt, shadowNode, config);
 
   maybeRunCSSLoop();
 }
 
 void ReanimatedModuleProxy::unregisterCSSTransition(jsi::Runtime &rt, const jsi::Value &viewTag) {
-  auto lock = cssTransitionsRegistry_->lock();
   cssTransitionsRegistry_->remove(viewTag.asNumber());
 }
 
 jsi::Value ReanimatedModuleProxy::getSettledUpdates(jsi::Runtime &rt) {
-  react_native_assert(
-      StaticFeatureFlags::getFlag("FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS") &&
-      "getSettledUpdates requires FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS static feature flag to be enabled");
+  if (!RuntimeFeatureFlags::forceReactRenderForSettledAnimations()) {
+    return jsi::Array(rt, 0);
+  }
 
   // TODO(future): use unified timestamp
   const auto currentTimestamp = getAnimationTimestamp_();
 
-  const auto lock = animatedPropsRegistry_->lock();
-
   // TODO: fix bug when threshold difference is smaller than 1 second
   // TODO(future): flush updates from CSS animations and CSS transitions registries
-  animatedPropsRegistry_->removeUpdatesOlderThanTimestamp(currentTimestamp - 2000); // 2 seconds
-
   // TODO(future): find a better way to obtain timestamp for removing updates
   // TODO(future): move removing old updates to separate method
-  return animatedPropsRegistry_->getUpdatesOlderThanTimestamp(rt, currentTimestamp - 1000); // 1 second
+  return animatedPropsRegistry_->getUpdatesOlderThanTimestamp(
+      rt, currentTimestamp - 1000 /* 1 second */, currentTimestamp - 2000 /* 2 seconds */);
 }
 
 bool ReanimatedModuleProxy::handleEvent(
@@ -694,24 +688,17 @@ void ReanimatedModuleProxy::performOperations() {
     auto lock = updatesRegistryManager_->lock();
 
     if (shouldUpdateCssAnimations_) {
-      currentCssTimestamp_ = getAnimationTimestamp_();
-      auto lock = cssTransitionsRegistry_->lock();
       // Update CSS transitions and flush updates
-      cssTransitionsRegistry_->update(currentCssTimestamp_);
-      cssTransitionsRegistry_->flushUpdates(updatesBatch);
+      currentCssTimestamp_ = getAnimationTimestamp_();
+      cssTransitionsRegistry_->updateAndFlush(currentCssTimestamp_, updatesBatch);
     }
 
-    {
-      auto lock = animatedPropsRegistry_->lock();
-      // Flush all animated props updates
-      animatedPropsRegistry_->flushUpdates(updatesBatch);
-    }
+    // Flush all animated props updates
+    animatedPropsRegistry_->flushUpdates(updatesBatch);
 
     if (shouldUpdateCssAnimations_) {
-      auto lock = cssAnimationsRegistry_->lock();
       // Update CSS animations and flush updates
-      cssAnimationsRegistry_->update(currentCssTimestamp_);
-      cssAnimationsRegistry_->flushUpdates(updatesBatch);
+      cssAnimationsRegistry_->updateAndFlush(currentCssTimestamp_, updatesBatch);
     }
 
     shouldUpdateCssAnimations_ = false;

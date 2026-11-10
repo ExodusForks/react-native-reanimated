@@ -13,9 +13,9 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@exodus/react-native-reanimated": "workspace:*",
     "react": "19.2.3",
     "react-native": "npm:react-native-tvos@0.84.1-0",
-    "react-native-reanimated": "workspace:*",
     "react-native-worklets": "0.8.1"
   },
   "devDependencies": {

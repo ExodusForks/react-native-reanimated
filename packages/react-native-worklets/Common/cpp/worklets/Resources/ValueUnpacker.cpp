@@ -10,21 +10,14 @@ const char ValueUnpackerCode[] =
     R"DELIMITER__((function () {
   var workletsCache = new Map();
   var handleCache = new WeakMap();
-  function valueUnpacker(objectToUnpack, category, remoteFunctionName) {
+  function valueUnpacker(objectToUnpack, category, remoteFunctionName, evaluateWorkletFunction) {
     'use strict';
 
     var workletHash = objectToUnpack.__workletHash;
     if (workletHash !== undefined) {
       var workletFun = workletsCache.get(workletHash);
       if (workletFun === undefined) {
-        var initData = objectToUnpack.__initData;
-        if (globalThis.evalWithSourceMap) {
-          workletFun = globalThis.evalWithSourceMap('(' + initData.code + '\n)', initData.location, initData.sourceMap);
-        } else if (globalThis.evalWithSourceUrl) {
-          workletFun = globalThis.evalWithSourceUrl('(' + initData.code + '\n)', "worklet_".concat(workletHash));
-        } else {
-          workletFun = eval('(' + initData.code + '\n)');
-        }
+        workletFun = evaluateWorkletFunction === null || evaluateWorkletFunction === void 0 ? void 0 : evaluateWorkletFunction();
         workletsCache.set(workletHash, workletFun);
       }
       var functionInstance = workletFun.bind(objectToUnpack);

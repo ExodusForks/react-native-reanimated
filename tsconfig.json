@@ -9,7 +9,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
-    "lib": ["es6", "dom", "ES2021"],
+    "lib": ["es6", "dom", "ES2022"],
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,

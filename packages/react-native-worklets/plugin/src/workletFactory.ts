@@ -12,6 +12,7 @@ import {
   arrayExpression,
   assignmentExpression,
   blockStatement,
+  callExpression,
   cloneNode,
   expressionStatement,
   functionExpression,
@@ -160,8 +161,24 @@ export function makeWorkletFactory(
       `worklet_${workletHash}_init_data`
     );
 
+  const symbolForWorkletCode = callExpression(
+    memberExpression(identifier('Symbol'), identifier('for')),
+    [stringLiteral('__reanimated_workletCode')]
+  );
+
+  const workletCodeProperty = objectProperty(
+    symbolForWorkletCode,
+    stringLiteral(funString),
+    true
+  );
+
+  const reanimatedWorkletCodeProperty = objectProperty(
+    identifier('__reanimated_workletCodeWrapper'),
+    objectExpression([workletCodeProperty])
+  );
+
   const initDataObjectExpression = objectExpression([
-    objectProperty(identifier('code'), stringLiteral(funString)),
+    reanimatedWorkletCodeProperty,
   ]);
 
   // When testing with jest I noticed that environment variables are set later

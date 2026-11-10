@@ -1,6 +1,6 @@
 {
-  "name": "react-native-worklets",
-  "version": "0.9.0-main",
+  "name": "@exodus/react-native-worklets",
+  "version": "0.9.0-exodus.2",
   "description": "The React Native multithreading library",
   "keywords": [
     "react-native",
@@ -96,7 +96,7 @@
   "module": "./lib/module/index",
   "react-native": "./src/index",
   "source": "./src/index",
-  "types": "lib/typescript/index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
   "files": [
     "src",
     "lib",

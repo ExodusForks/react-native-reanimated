@@ -28,7 +28,8 @@ export class PropsFilter implements IPropsFilter {
   ): Record<string, unknown> {
     const inputProps =
       component.props as AnimatedComponentProps<InitialComponentProps>;
-    const props: Record<string, unknown> = {};
+    // Security: use null-prototype object to prevent prototype pollution (0078)
+    const props: Record<string, unknown> = Object.create(null);
 
     for (const key in inputProps) {
       const value = inputProps[key];

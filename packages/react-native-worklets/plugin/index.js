@@ -964,8 +964,11 @@ var require_workletFactory = __commonJS({
       (0, assert_1.strict)(pathForStringDefinitions, "[Reanimated] `pathForStringDefinitions` is null.");
       (0, assert_1.strict)(pathForStringDefinitions.parentPath, "[Reanimated] `pathForStringDefinitions.parentPath` is null.");
       const initDataId = pathForStringDefinitions.parentPath.scope.generateUidIdentifier(`worklet_${workletHash}_init_data`);
+      const symbolForWorkletCode = (0, types_12.callExpression)((0, types_12.memberExpression)((0, types_12.identifier)("Symbol"), (0, types_12.identifier)("for")), [(0, types_12.stringLiteral)("__reanimated_workletCode")]);
+      const workletCodeProperty = (0, types_12.objectProperty)(symbolForWorkletCode, (0, types_12.stringLiteral)(funString), true);
+      const reanimatedWorkletCodeProperty = (0, types_12.objectProperty)((0, types_12.identifier)("__reanimated_workletCodeWrapper"), (0, types_12.objectExpression)([workletCodeProperty]));
       const initDataObjectExpression = (0, types_12.objectExpression)([
-        (0, types_12.objectProperty)((0, types_12.identifier)("code"), (0, types_12.stringLiteral)(funString))
+        reanimatedWorkletCodeProperty
       ]);
       const shouldInjectLocation = !(0, utils_1.isRelease)();
       if (shouldInjectLocation) {

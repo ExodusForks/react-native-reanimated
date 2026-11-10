@@ -6,6 +6,7 @@ import {
 } from './common/style/processors/colors';
 import type { StyleProps } from './commonTypes';
 import type { IAnimatedComponentInternal } from './createAnimatedComponent/commonTypes';
+import { DynamicFlags } from './featureFlags';
 import { ReanimatedModule } from './ReanimatedModule';
 
 const FLUSH_INTERVAL_MS = 500;
@@ -40,6 +41,9 @@ export const PropsRegistryGarbageCollector = {
   },
 
   syncPropsBackToReact() {
+    if (!DynamicFlags.FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS) {
+      return;
+    }
     const settledUpdates = ReanimatedModule.getSettledUpdates();
     for (const { viewTag, styleProps } of settledUpdates) {
       if (styleProps === null) {

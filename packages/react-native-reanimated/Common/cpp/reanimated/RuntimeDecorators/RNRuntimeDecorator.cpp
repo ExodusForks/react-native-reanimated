@@ -10,14 +10,7 @@ void RNRuntimeDecorator::decorate(
     jsi::Runtime &rnRuntime,
     jsi::Runtime &uiRuntime,
     const std::shared_ptr<ReanimatedModuleProxy> &reanimatedModuleProxy) {
-  auto workletRuntimeValue = rnRuntime.global()
-                                 .getPropertyAsObject(rnRuntime, "ArrayBuffer")
-                                 .asFunction(rnRuntime)
-                                 .callAsConstructor(rnRuntime, {static_cast<double>(sizeof(void *))});
-  uintptr_t *workletRuntimeData =
-      reinterpret_cast<uintptr_t *>(workletRuntimeValue.getObject(rnRuntime).getArrayBuffer(rnRuntime).data(rnRuntime));
-  workletRuntimeData[0] = reinterpret_cast<uintptr_t>(&uiRuntime);
-  rnRuntime.global().setProperty(rnRuntime, "_WORKLET_RUNTIME", workletRuntimeValue);
+  // Security: _WORKLET_RUNTIME pointer leak removed (0056)
 
 #ifndef NDEBUG
   checkJSVersion(rnRuntime);

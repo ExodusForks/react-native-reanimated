@@ -37,6 +37,7 @@ void RNRuntimeWorkletDecorator::decorate(
 
   injectWorkletsCppVersion(rnRuntime);
 
+#ifndef NDEBUG
   rnRuntime.global().setProperty(
       rnRuntime,
       "_startProfiling",
@@ -54,6 +55,7 @@ void RNRuntimeWorkletDecorator::decorate(
     std::string path = stopProfiling(rt);
     return jsi::String::createFromUtf8(rt, path);
   });
+#endif // NDEBUG
 }
 
 #ifdef IS_REANIMATED_EXAMPLE_APP

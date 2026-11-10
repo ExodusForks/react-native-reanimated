@@ -49,6 +49,14 @@ function setPath<T>(
   const keys: Path = Array.isArray(path) ? path : [path];
   let currObj: NestedObjectValues<T> = obj;
   for (let i = 0; i < keys.length - 1; i++) {
+    // Security: guard dangerous keys to prevent prototype pollution (0058)
+    if (
+      keys[i] === '__proto__' ||
+      keys[i] === 'constructor' ||
+      keys[i] === 'prototype'
+    ) {
+      return;
+    }
     // creates entry if there isn't one
     currObj = currObj as { [key: string]: NestedObjectValues<T> };
     if (!(keys[i] in currObj)) {
@@ -62,8 +70,16 @@ function setPath<T>(
     currObj = currObj[keys[i]];
   }
 
-  (currObj as { [key: string]: NestedObjectValues<T> })[keys[keys.length - 1]] =
-    value;
+  // Security: guard final key as well (0058)
+  const lastKey = keys[keys.length - 1];
+  if (
+    lastKey === '__proto__' ||
+    lastKey === 'constructor' ||
+    lastKey === 'prototype'
+  ) {
+    return;
+  }
+  (currObj as { [key: string]: NestedObjectValues<T> })[lastKey] = value;
 }
 
 interface NestedObjectEntry<T> {

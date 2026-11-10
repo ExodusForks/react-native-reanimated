@@ -11,11 +11,11 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
+    "@exodus/react-native-reanimated": "workspace:*",
     "common-app": "workspace:*",
     "react": "19.1.4",
     "react-native": "0.81.4",
     "react-native-macos": "patch:react-native-macos@npm%3A0.81.4#~/.yarn/patches/react-native-macos-npm-0.81.4.patch",
-    "react-native-reanimated": "workspace:*",
     "react-native-worklets": "0.8.1"
   },
   "devDependencies": {

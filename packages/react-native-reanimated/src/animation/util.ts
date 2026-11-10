@@ -203,7 +203,7 @@ function decorateAnimation<T extends AnimationObject | StyleLayoutAnimation>(
     return;
   }
 
-  const animationCopy = Object.assign({}, animation);
+  const animationCopy = Object.assign(Object.create(null), animation);
   delete animationCopy.callback;
 
   const prefNumberSuffOnStart = (
@@ -283,7 +283,7 @@ function decorateAnimation<T extends AnimationObject | StyleLayoutAnimation>(
       }
     }
     tab.forEach((i, index) => {
-      animation[i] = Object.assign({}, animationCopy);
+      animation[i] = Object.assign(Object.create(null), animationCopy);
       animation[i].current = RGBACurrent[index];
       animation[i].toValue = RGBAToValue ? RGBAToValue[index] : undefined;
       animation[i].onStart(
@@ -344,7 +344,7 @@ function decorateAnimation<T extends AnimationObject | StyleLayoutAnimation>(
     // We set limits from 0 to 100 (instead of 0-1) to make spring look good
     // with default thresholds.
 
-    animation[0] = Object.assign({}, animationCopy);
+    animation[0] = Object.assign(Object.create(null), animationCopy);
     animation[0].current = 0;
     animation[0].toValue = 100;
     animation[0].onStart(
@@ -424,7 +424,7 @@ function decorateAnimation<T extends AnimationObject | StyleLayoutAnimation>(
     previousAnimation: Animation<AnimationObject>
   ): void => {
     value.forEach((v, i) => {
-      animation[i] = Object.assign({}, animationCopy);
+      animation[i] = Object.assign(Object.create(null), animationCopy);
       animation[i].current = v;
       animation[i].toValue = (animation.toValue as Array<number>)[i];
       animation[i].onStart(
@@ -459,7 +459,7 @@ function decorateAnimation<T extends AnimationObject | StyleLayoutAnimation>(
     previousAnimation: Animation<AnimationObject>
   ): void => {
     for (const key in value) {
-      animation[key] = Object.assign({}, animationCopy);
+      animation[key] = Object.assign(Object.create(null), animationCopy);
       animation[key].onStart = animation.onStart;
 
       animation[key].current = value[key];

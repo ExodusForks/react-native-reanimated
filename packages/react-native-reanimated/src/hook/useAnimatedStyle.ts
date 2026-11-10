@@ -127,11 +127,28 @@ function runAnimations(
   forceCopyAnimation?: boolean
 ): boolean {
   'worklet';
+
+  // Security: use defineProperty instead of bracket assignment to avoid
+  // prototype pollution via __proto__ or constructor keys (0057 + 0067)
+  function safeAssign(
+    obj: Record<string, unknown>,
+    k: string,
+    value: unknown
+  ) {
+    Object.defineProperty(obj, k, {
+      value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+      __proto__: null,
+    } as PropertyDescriptor);
+  }
+
   if (!animationsActive.value) {
     return true;
   }
   if (Array.isArray(animation)) {
-    result[key] = [];
+    safeAssign(result, String(key), []);
     let allFinished = true;
     forceCopyAnimation = key === 'boxShadow';
     animation.forEach((entry, index) => {
@@ -169,13 +186,13 @@ function runAnimations(
      * in rgba format, allowing the animation to run correctly. Additionally we need to check if user animated the whole boxShadow object or only one of its properties.
      */
     if (forceCopyAnimation && typeof animation.current === 'object') {
-      result[key] = { ...animation.current };
+      safeAssign(result, String(key), { ...animation.current });
     } else {
-      result[key] = animation.current;
+      safeAssign(result, String(key), animation.current);
     }
     return finished;
   } else if (typeof animation === 'object') {
-    result[key] = {};
+    safeAssign(result, String(key), {});
     let allFinished = true;
     Object.keys(animation).forEach((k) => {
       if (
@@ -193,7 +210,7 @@ function runAnimations(
     });
     return allFinished;
   } else {
-    result[key] = animation;
+    safeAssign(result, String(key), animation);
     return true;
   }
 }
