@@ -10,13 +10,31 @@ using namespace facebook;
 
 namespace worklets {
 
-jsi::PropNameID workletCodePropName(jsi::Runtime &rt) {
+jsi::Symbol workletCodeSymbol(jsi::Runtime &rt) {
   jsi::Function symbolFor = rt.global()
     .getPropertyAsObject(rt, "Symbol")
     .getPropertyAsFunction(rt, "for");
   jsi::Value val = symbolFor.call(rt, jsi::String::createFromAscii(rt, "__reanimated_workletCode"));
-  jsi::Symbol sym = val.asSymbol(rt);
-  return jsi::PropNameID::forSymbol(rt, sym);
+  return val.asSymbol(rt);
+}
+
+bool isWorkletCodeWrapper(jsi::Runtime &rt, const jsi::Object &object, const jsi::Symbol &sym) {
+  if (!object.hasProperty(rt, jsi::PropNameID::forSymbol(rt, sym))) {
+    return false;
+  }
+  jsi::Object objectCtor = rt.global().getPropertyAsObject(rt, "Object");
+  jsi::Array ownNames =
+      objectCtor.getPropertyAsFunction(rt, "getOwnPropertyNames").call(rt, object).asObject(rt).asArray(rt);
+  if (ownNames.length(rt) != 0) {
+    return false;
+  }
+  jsi::Array ownSymbols =
+      objectCtor.getPropertyAsFunction(rt, "getOwnPropertySymbols").call(rt, object).asObject(rt).asArray(rt);
+  if (ownSymbols.length(rt) != 1) {
+    return false;
+  }
+  jsi::Value only = ownSymbols.getValueAtIndex(rt, 0);
+  return only.isSymbol() && jsi::Symbol::strictEquals(rt, only.getSymbol(rt), sym);
 }
 
 jsi::Function getValueUnpacker(jsi::Runtime &rt) {
@@ -33,9 +51,9 @@ jsi::Value makeSerializableClone(
   std::shared_ptr<Serializable> serializable;
   if (value.isObject()) {
     auto object = value.asObject(rt);
-    jsi::PropNameID prop = workletCodePropName(rt);
-    if (object.hasProperty(rt, prop)) {
-      jsi::Value code = object.getProperty(rt, prop);
+    jsi::Symbol sym = workletCodeSymbol(rt);
+    if (isWorkletCodeWrapper(rt, object, sym)) {
+      jsi::Value code = object.getProperty(rt, jsi::PropNameID::forSymbol(rt, sym));
       serializable = std::make_shared<SerializableString>(code.asString(rt).utf8(rt));
     } else if (!object.getProperty(rt, "__workletHash").isUndefined()) {
       // We pass `false` because this function is invoked only
@@ -244,7 +262,7 @@ jsi::Value SerializableWorklet::toJSValue(jsi::Runtime &rt) {
       rt,
       jsi::PropNameID::forAscii(rt, "evaluateWorkletFunction"),
       0,
-      [&](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *, size_t)
+      [code, sourceURL](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *, size_t)
           -> jsi::Value { return rt.evaluateJavaScript(code, sourceURL); });
   return getValueUnpacker(rt).call(
       rt,
