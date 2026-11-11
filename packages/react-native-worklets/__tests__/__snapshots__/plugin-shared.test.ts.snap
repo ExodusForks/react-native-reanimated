@@ -29,7 +29,7 @@ exports[`babel plugin core (bundle mode) closure handling captures locally bound
   f.__closure = {
     console
   };
-  f.__workletHash = 16880126594815;
+  f.__workletHash = 8721687495967;
   f.__pluginVersion = "x.y.z";
   return f;
 });"
@@ -47,7 +47,7 @@ exports[`babel plugin core (bundle mode) closure handling captures multiple clos
     a,
     b
   };
-  foo.__workletHash = 13996627615150;
+  foo.__workletHash = 16890854702606;
   foo.__pluginVersion = "x.y.z";
   return foo;
 });"
@@ -178,14 +178,14 @@ exports[`babel plugin core (bundleless mode) closure handling captures locally b
 "const console = {
   log: () => 42
 };
-const _worklet_16880126594815_init_data = {
+const _worklet_8721687495967_init_data = {
   __reanimated_workletCodeWrapper: {
-    [Symbol.for("__reanimated_workletCode")]: "(function f_testJs1(){const{console}=this.__closure;console.log(console);})"
+    [Symbol.for("__reanimated_workletCode")]: "(function f_testJs1(){var{console}=this.__closure;console.log(console);})"
   },
   location: "test.js"
 };
 const f = function f_testJs1Factory({
-  _worklet_16880126594815_init_data,
+  _worklet_8721687495967_init_data,
   console
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -195,13 +195,13 @@ const f = function f_testJs1Factory({
   f.__closure = {
     console
   };
-  f.__workletHash = 16880126594815;
+  f.__workletHash = 8721687495967;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_16880126594815_init_data;
+  f.__initData = _worklet_8721687495967_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_16880126594815_init_data,
+  _worklet_8721687495967_init_data,
   console
 });"
 `;
@@ -209,14 +209,14 @@ const f = function f_testJs1Factory({
 exports[`babel plugin core (bundleless mode) closure handling captures multiple closure variables 1`] = `
 "const a = 1;
 const b = 2;
-const _worklet_13996627615150_init_data = {
+const _worklet_16890854702606_init_data = {
   __reanimated_workletCodeWrapper: {
-    [Symbol.for("__reanimated_workletCode")]: "(function foo_testJs1(){const{a,b}=this.__closure;return a+b;})"
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_testJs1(){var{a,b}=this.__closure;return a+b;})"
   },
   location: "test.js"
 };
 const foo = function foo_testJs1Factory({
-  _worklet_13996627615150_init_data,
+  _worklet_16890854702606_init_data,
   a,
   b
 }) {
@@ -228,13 +228,13 @@ const foo = function foo_testJs1Factory({
     a,
     b
   };
-  foo.__workletHash = 13996627615150;
+  foo.__workletHash = 16890854702606;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_13996627615150_init_data;
+  foo.__initData = _worklet_16890854702606_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_13996627615150_init_data,
+  _worklet_16890854702606_init_data,
   a,
   b
 });"

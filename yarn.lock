@@ -4052,6 +4052,7 @@ __metadata:
     "@babel/core": "npm:7.28.4"
     "@babel/generator": "npm:^7.27.1"
     "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
+    "@babel/plugin-transform-block-scoping": "npm:^7.28.6"
     "@babel/plugin-transform-class-properties": "npm:^7.28.6"
     "@babel/plugin-transform-classes": "npm:^7.28.6"
     "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.28.6"

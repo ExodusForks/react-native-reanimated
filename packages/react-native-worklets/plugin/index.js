@@ -1013,7 +1013,7 @@ var require_workletStringCode = __commonJS({
     var MOCK_SOURCE_MAP = "mock source map";
     var querySuffixRE = /[?#].*$/;
     function buildWorkletString(fun, state, closureVariables, workletName, inputMap) {
-      var _a;
+      var _a, _b;
       restoreRecursiveCalls(fun, workletName);
       const draftExpression = fun.program.body.find((obj) => (0, types_12.isFunctionDeclaration)(obj)) || fun.program.body.find((obj) => (0, types_12.isExpressionStatement)(obj));
       (0, assert_1.strict)(draftExpression, "`draftExpression` is undefined.");
@@ -1056,8 +1056,9 @@ var require_workletStringCode = __commonJS({
       const transformed = (0, transform_1.workletTransformSync)(code, {
         filename: state.file.opts.filename,
         extraPlugins: [
-          getClosurePlugin(closureVariables),
-          ...(_a = state.opts.extraPlugins) !== null && _a !== void 0 ? _a : []
+          getClosurePlugin(closureVariables, workletName),
+          ...(_a = state.opts.extraPlugins) !== null && _a !== void 0 ? _a : [],
+          require.resolve("@babel/plugin-transform-block-scoping")
         ],
         extraPresets: state.opts.extraPresets,
         compact: true,
@@ -1078,7 +1079,7 @@ var require_workletStringCode = __commonJS({
           delete sourceMap.sourcesContent;
         }
       }
-      const wrappedCode = `(${transformed.code})`;
+      const wrappedCode = `(${(_b = transformed.code) === null || _b === void 0 ? void 0 : _b.replace(/;$/, "")})`;
       return [wrappedCode, JSON.stringify(sourceMap)];
     }
     function restoreRecursiveCalls(file, newName) {
@@ -1110,22 +1111,44 @@ var require_workletStringCode = __commonJS({
       if ((0, types_12.isProgram)(path.parent) && !(0, types_12.isArrowFunctionExpression)(path.node) && !(0, types_12.isObjectMethod)(path.node) && path.node.id && path.scope.parent) {
         const hasRecursiveCalls = ((_a = path.scope.parent.bindings[path.node.id.name]) === null || _a === void 0 ? void 0 : _a.references) > 0;
         if (hasRecursiveCalls) {
-          path.node.body.body.unshift((0, types_12.variableDeclaration)("const", [
+          path.node.body.body.unshift((0, types_12.variableDeclaration)("var", [
             (0, types_12.variableDeclarator)((0, types_12.identifier)(path.node.id.name), (0, types_12.memberExpression)((0, types_12.thisExpression)(), (0, types_12.identifier)("_recur")))
           ]));
         }
       }
     }
-    function getClosurePlugin(closureVariables) {
-      const closureDeclaration = (0, types_12.variableDeclaration)("const", [
+    function getClosurePlugin(closureVariables, workletName) {
+      const closureDeclaration = (0, types_12.variableDeclaration)("var", [
         (0, types_12.variableDeclarator)((0, types_12.objectPattern)(closureVariables.map((variable) => (0, types_12.objectProperty)((0, types_12.identifier)(variable.name), (0, types_12.identifier)(variable.name), false, true))), (0, types_12.memberExpression)((0, types_12.thisExpression)(), (0, types_12.identifier)("__closure")))
       ]);
+      const prependDeclarations = (path) => {
+        prependClosure(path, closureVariables, closureDeclaration);
+        prependRecursiveDeclaration(path);
+      };
       return {
         visitor: {
-          "FunctionDeclaration|FunctionExpression|ArrowFunctionExpression|ObjectMethod": (path) => {
-            prependClosure(path, closureVariables, closureDeclaration);
-            prependRecursiveDeclaration(path);
+          FunctionDeclaration: prependDeclarations,
+          FunctionExpression: prependDeclarations,
+          ArrowFunctionExpression: prependDeclarations,
+          ObjectMethod: prependDeclarations
+        },
+        post({ ast }) {
+          const { body } = ast.program;
+          if (body.length === 1) {
+            return;
           }
+          const worklet = body.find((node) => {
+            var _a;
+            return (0, types_12.isFunctionDeclaration)(node) && ((_a = node.id) === null || _a === void 0 ? void 0 : _a.name) === workletName;
+          });
+          (0, assert_1.strict)(worklet, "[Worklets] Worklet function is undefined.");
+          const helpers = body.filter((node) => node !== worklet);
+          ast.program.body = [
+            (0, types_12.expressionStatement)((0, types_12.callExpression)((0, types_12.functionExpression)(null, [], (0, types_12.blockStatement)([
+              ...helpers,
+              (0, types_12.returnStatement)((0, types_12.functionExpression)(worklet.id, worklet.params, worklet.body, worklet.generator, worklet.async))
+            ])), []))
+          ];
         }
       };
     }

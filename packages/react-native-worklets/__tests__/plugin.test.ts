@@ -207,7 +207,7 @@ describe('babel plugin', () => {
       </script>`;
 
       const { code } = runPlugin(input);
-      expect(code).toMatch(/const foo_null[0-9]+=this._recur;/gm);
+      expect(code).toMatch(/var foo_null[0-9]+=this._recur;/gm);
       expect(code).toMatchSnapshot();
     });
   });
@@ -1809,8 +1809,8 @@ describe('babel plugin', () => {
         {},
         { substituteWebPlatformChecks: true }
       );
-      expect(code).toContain('const x=isWeb();');
-      expect(code).toContain('const y=shouldBeUseWeb();');
+      expect(code).toContain('var x=isWeb();');
+      expect(code).toContain('var y=shouldBeUseWeb();');
       expect(code).toMatchSnapshot();
     });
   });

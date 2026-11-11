@@ -4,7 +4,7 @@ exports[`babel plugin in bundleMode bundle mode flag toggle does not flip the fl
 
 exports[`babel plugin in bundleMode bundle mode flag toggle does not flip the flag without bundleMode option 1`] = `"globalThis._WORKLETS_BUNDLE_MODE_ENABLED = false;"`;
 
-exports[`babel plugin in bundleMode nested worklets extracts each nested worklet into its own file 1`] = `"const foo = require("react-native-worklets/.worklets/16646339867656.js").default({});"`;
+exports[`babel plugin in bundleMode nested worklets extracts each nested worklet into its own file 1`] = `"const foo = require("react-native-worklets/.worklets/147386025128.js").default({});"`;
 
 exports[`babel plugin in bundleMode nested worklets extracts each nested worklet into its own file 2`] = `
 "export default (function testJs2Factory({}) {
@@ -13,7 +13,7 @@ exports[`babel plugin in bundleMode nested worklets extracts each nested worklet
     return bar();
   };
   testJs2.__closure = {};
-  testJs2.__workletHash = 16646339867656;
+  testJs2.__workletHash = 147386025128;
   testJs2.__pluginVersion = "x.y.z";
   return testJs2;
 });"
@@ -23,7 +23,7 @@ exports[`babel plugin in bundleMode source replacement replaces inline factory w
 
 exports[`babel plugin in bundleMode source replacement still captures closure even with "no-worklet-closure" directive 1`] = `
 "const x = 1;
-const foo = require("react-native-worklets/.worklets/9785920889417.js").default({
+const foo = require("react-native-worklets/.worklets/1538621810281.js").default({
   x
 });"
 `;
@@ -38,7 +38,7 @@ exports[`babel plugin in bundleMode source replacement still captures closure ev
   foo.__closure = {
     x
   };
-  foo.__workletHash = 9785920889417;
+  foo.__workletHash = 1538621810281;
   foo.__pluginVersion = "x.y.z";
   return foo;
 });"
@@ -77,7 +77,7 @@ exports[`babel plugin in bundleMode worklet file emission does not rebase relati
     return helper.foo();
   };
   baz.__closure = {};
-  baz.__workletHash = 12941023173509;
+  baz.__workletHash = 9657537007077;
   baz.__pluginVersion = "x.y.z";
   return baz;
 });"
@@ -86,7 +86,7 @@ exports[`babel plugin in bundleMode worklet file emission does not rebase relati
 exports[`babel plugin in bundleMode worklet file emission forwards closure variables from source to factory 1`] = `
 "const a = 1;
 const b = 2;
-const foo = require("react-native-worklets/.worklets/13996627615150.js").default({
+const foo = require("react-native-worklets/.worklets/16890854702606.js").default({
   a,
   b
 });"
@@ -104,7 +104,7 @@ exports[`babel plugin in bundleMode worklet file emission forwards closure varia
     a,
     b
   };
-  foo.__workletHash = 13996627615150;
+  foo.__workletHash = 16890854702606;
   foo.__pluginVersion = "x.y.z";
   return foo;
 });"
@@ -135,7 +135,7 @@ exports[`babel plugin in bundleMode worklet file emission rebases relative requi
     return helper.foo();
   };
   baz.__closure = {};
-  baz.__workletHash = 1263656201755;
+  baz.__workletHash = 3833318956667;
   baz.__pluginVersion = "x.y.z";
   return baz;
 });"
