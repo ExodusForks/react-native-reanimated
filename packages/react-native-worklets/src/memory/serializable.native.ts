@@ -377,6 +377,11 @@ function cloneObjectProperties<T extends object>(
     if (key === '__initData' && clonedProps.__initData !== undefined) {
       continue;
     }
+    if (key === WORKLET_CODE_KEY) {
+      throw new Error(
+        '[Worklets] Worklet code can only be serialized from its wrapper.'
+      );
+    }
     if (key === WORKLET_CODE_WRAPPER_KEY) {
       assignReadOnly(
         clonedProps,
