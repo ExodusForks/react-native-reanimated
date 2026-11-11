@@ -1,1 +1,1 @@
-export type { PluginOptions } from 'react-native-worklets/plugin/';
+export type { PluginOptions } from '@exodus/react-native-worklets/plugin/';

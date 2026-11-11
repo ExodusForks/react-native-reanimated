@@ -46,7 +46,7 @@ file(GLOB_RECURSE REANIMATED_NATIVEVIEW_CPP_SOURCES CONFIGURE_DEPENDS
 
 find_package(fbjni REQUIRED CONFIG)
 find_package(ReactAndroid REQUIRED CONFIG)
-find_package(react-native-worklets REQUIRED CONFIG)
+find_package(exodus_react-native-worklets REQUIRED CONFIG)
 
 add_library(
   reanimated SHARED
@@ -113,4 +113,4 @@ target_link_libraries(
   ReactAndroid::jsi
   fbjni::fbjni
   android
-  react-native-worklets::worklets)
+  exodus_react-native-worklets::worklets)

@@ -338,8 +338,8 @@ dependencies {
     if (project == rootProject) {
         // This is needed for linting in Reanimated's repo.
     } else {
-        if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
-            "implementation"(project(":react-native-worklets"))
+        if (rootProject.subprojects.find { it.name == "exodus_react-native-worklets" } != null) {
+            "implementation"(project(":exodus_react-native-worklets"))
         } else {
             throw GradleException(
                 "[Reanimated] `react-native-worklets` library not found. Please install it as a dependency in your project. Install `react-native-worklets` with your package manager, i.e. `yarn add react-native-worklets` or `npm i react-native-worklets`. Read the documentation for more details: https://docs.swmansion.com/react-native-reanimated/docs/guides/troubleshooting#unable-to-find-a-specification-for-rnworklets-depended-upon-by-rnreanimated"
@@ -355,14 +355,14 @@ tasks.named("preBuild") { dependsOn("prepareReanimatedHeadersForPrefabs") }
 tasks.configureEach { if (name.startsWith("lintVital")) enabled = false }
 
 if (project != rootProject) {
-    evaluationDependsOn(":react-native-worklets")
+    evaluationDependsOn(":exodus_react-native-worklets")
 
     afterEvaluate {
         tasks.named("externalNativeBuildDebug").configure {
-            dependsOn(findProject(":react-native-worklets")!!.tasks.named("externalNativeBuildDebug"))
+            dependsOn(findProject(":exodus_react-native-worklets")!!.tasks.named("externalNativeBuildDebug"))
         }
         tasks.named("externalNativeBuildRelease").configure {
-            dependsOn(findProject(":react-native-worklets")!!.tasks.named("externalNativeBuildRelease"))
+            dependsOn(findProject(":exodus_react-native-worklets")!!.tasks.named("externalNativeBuildRelease"))
         }
         tasks.named("clean") {
             finalizedBy("cleanCMakeCache")
