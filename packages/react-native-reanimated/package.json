@@ -1,6 +1,6 @@
 {
   "name": "@exodus/react-native-reanimated",
-  "version": "4.5.5",
+  "version": "4.5.5-exodus.0",
   "description": "More powerful alternative to Animated library for React Native.",
   "keywords": [
     "react-native",
