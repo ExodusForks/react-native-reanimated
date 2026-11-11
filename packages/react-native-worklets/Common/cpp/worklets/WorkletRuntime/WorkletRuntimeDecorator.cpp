@@ -72,23 +72,6 @@ void WorkletRuntimeDecorator::decorate(
 
   rt.global().setProperty(rt, "__workletsModuleProxy", std::move(jsiWorkletsModuleProxy));
 
-#ifndef NDEBUG
-  auto evalWithSourceUrl =
-      [](jsi::Runtime &rt, const jsi::Value &thisValue, const jsi::Value *args, size_t count) -> jsi::Value {
-    auto code = std::make_shared<const jsi::StringBuffer>(args[0].asString(rt).utf8(rt));
-    std::string url;
-    if (count > 1 && args[1].isString()) {
-      url = args[1].asString(rt).utf8(rt);
-    }
-    return rt.evaluateJavaScript(code, url);
-  };
-  rt.global().setProperty(
-      rt,
-      "evalWithSourceUrl",
-      jsi::Function::createFromHostFunction(
-          rt, jsi::PropNameID::forAscii(rt, "evalWithSourceUrl"), 1, evalWithSourceUrl));
-#endif // NDEBUG
-
   jsi_utils::installJsiFunction(
       rt, "_log", [](jsi::Runtime &rt, const jsi::Value &value) { PlatformLogger::log(stringifyJSIValue(rt, value)); });
 

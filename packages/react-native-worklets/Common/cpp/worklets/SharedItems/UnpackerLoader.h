@@ -49,17 +49,6 @@ class UnpackerLoader {
 
  private:
   static void installUnpacker(facebook::jsi::Runtime &rt, const CodeUnpacker &unpacker) {
-#ifndef NDEBUG
-    if (!unpacker.sourceMap.empty()) {
-      rt.global()
-          .getPropertyAsFunction(rt, "evalWithSourceMap")
-          .call(rt, unpacker.code, unpacker.location, unpacker.sourceMap)
-          .getObject(rt)
-          .getFunction(rt)
-          .call(rt);
-      return;
-    }
-#endif // NDEBUG
     rt.evaluateJavaScript(std::make_shared<facebook::jsi::StringBuffer>(unpacker.code), unpacker.location)
         .getObject(rt)
         .getFunction(rt)
