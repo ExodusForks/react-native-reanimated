@@ -2,6 +2,7 @@
 #include <react/debug/react_native_assert.h>
 #include <worklets/SharedItems/Serializable.h>
 #include <worklets/SharedItems/SerializableFactory.h>
+#include <worklets/Tools/ScriptBuffer.h>
 #include <worklets/WorkletRuntime/RuntimeData.h>
 #include <worklets/WorkletRuntime/RuntimeManager.h>
 #include <worklets/WorkletRuntime/WorkletRuntime.h>
@@ -10,12 +11,50 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 using namespace facebook;
 
 namespace worklets {
 
 namespace {
+
+jsi::Function makeEvaluateWorkletFunction(jsi::Runtime &rt, const jsi::Value &worklet) {
+  auto initData = worklet.asObject(rt).getProperty(rt, "__initData");
+  if (!initData.isObject()) {
+    throw jsi::JSError(rt, "[Worklets] Worklet is missing its init data.");
+  }
+  auto initDataObject = initData.asObject(rt);
+
+  auto bytecode = initDataObject.getProperty(rt, "bytecode");
+  if (bytecode.isObject() && bytecode.asObject(rt).isArrayBuffer(rt)) {
+    auto buffer = bytecode.asObject(rt).getArrayBuffer(rt);
+    auto data =
+        std::make_shared<BytecodeBuffer>(std::vector<uint8_t>(buffer.data(rt), buffer.data(rt) + buffer.size(rt)));
+    return jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "evaluateWorkletFunction"),
+        0,
+        [data](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *, size_t) -> jsi::Value {
+          return rt.evaluateJavaScript(data, "");
+        });
+  }
+
+  auto code = initDataObject.getProperty(rt, "__reanimated_workletCode");
+  if (!code.isString()) {
+    throw jsi::JSError(rt, "[Worklets] Worklet is missing its code.");
+  }
+  auto buffer = std::make_shared<const jsi::StringBuffer>(code.getString(rt).utf8(rt));
+  auto location = initDataObject.getProperty(rt, "location");
+  auto sourceURL = location.isString() ? location.getString(rt).utf8(rt) : std::string("worklet");
+  return jsi::Function::createFromHostFunction(
+      rt,
+      jsi::PropNameID::forAscii(rt, "evaluateWorkletFunction"),
+      0,
+      [buffer, sourceURL](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *, size_t) -> jsi::Value {
+        return rt.evaluateJavaScript(buffer, sourceURL);
+      });
+}
 
 jsi::Function getValueUnpacker(jsi::Runtime &rt) {
   auto valueUnpacker = rt.global().getProperty(rt, "__valueUnpacker");
@@ -274,7 +313,12 @@ jsi::Value SerializableWorklet::toJSValue(jsi::Runtime &rt) {
       std::any_of(data_.cbegin(), data_.cend(), [](const auto &item) { return item.first == "__workletHash"; }) &&
       "SerializableWorklet doesn't have `__workletHash` property");
   jsi::Value obj = SerializableObject::toJSValue(rt);
-  return getValueUnpacker(rt).call(rt, obj, jsi::String::createFromAscii(rt, "Worklet"));
+  return getValueUnpacker(rt).call(
+      rt,
+      obj,
+      jsi::String::createFromAscii(rt, "Worklet"),
+      jsi::Value::undefined(),
+      makeEvaluateWorkletFunction(rt, obj));
 }
 
 jsi::Value SerializableImport::toJSValue(jsi::Runtime &rt) {

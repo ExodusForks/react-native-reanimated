@@ -105,7 +105,12 @@ export interface WorkletFactory<
 }
 
 export type ValueUnpacker = WorkletFunction<
-  [objectToUnpack: unknown, category?: string],
+  [
+    objectToUnpack: unknown,
+    category?: string,
+    remoteFunctionName?: string,
+    evaluateWorkletFunction?: () => () => unknown,
+  ],
   unknown
 >;
 
