@@ -358,10 +358,9 @@ jsi::Object JSIWorkletsModuleProxy::toOptimizedObject(jsi::Runtime &rt) const {
       });
 
   jsi_utils::addMethod<2>(
-      rt, obj, "createSerializableRegExp", [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&args)[2]) {
-        const auto pattern = at<0>(args).getString(rt).utf8(rt);
-        const auto flags = at<1>(args).getString(rt).utf8(rt);
-        return makeSerializableRegExp(rt, pattern, flags);
+      rt, obj, "createSerializableRegExp", [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&)[2]) {
+        throw jsi::JSError(rt, "[Worklets] RegExp has been disabled. Contact AppSec if needed.");
+        return jsi::Value::undefined();
       });
 
   jsi_utils::addMethod<4>(

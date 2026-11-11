@@ -26,10 +26,12 @@ struct BytecodeUnpacker {
 class UnpackerLoader {
  public:
   void loadCodeUnpackers(std::array<CodeUnpacker, 6> unpackers) {
+    throwIfLoaded();
     codeUnpackers_ = std::move(unpackers);
   }
 
   void loadBytecodeUnpackers(std::array<BytecodeUnpacker, 6> unpackers) {
+    throwIfLoaded();
     bytecodeUnpackers_ = std::move(unpackers);
   }
 
@@ -48,6 +50,12 @@ class UnpackerLoader {
   }
 
  private:
+  void throwIfLoaded() const {
+    if (codeUnpackers_ || bytecodeUnpackers_) {
+      throw std::runtime_error("[Worklets] Unpackers can be loaded only once.");
+    }
+  }
+
   static void installUnpacker(facebook::jsi::Runtime &rt, const CodeUnpacker &unpacker) {
     rt.evaluateJavaScript(std::make_shared<facebook::jsi::StringBuffer>(unpacker.code), unpacker.location)
         .getObject(rt)
