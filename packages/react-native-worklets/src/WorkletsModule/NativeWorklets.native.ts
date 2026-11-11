@@ -14,6 +14,7 @@ import type {
   SynchronizableRef,
 } from '../memory/types';
 import { installValueUnpacker } from '../memory/valueUnpacker';
+import { getInitDataCode } from '../memory/workletCode';
 import { isRNRuntime } from '../runtimeKind';
 import { WorkletsTurboModule } from '../specs';
 import type { WorkletFunction, WorkletRuntime } from '../types';
@@ -438,22 +439,22 @@ function installUnpackers(workletsModuleProxy: WorkletsModuleProxy) {
     );
   } else {
     workletsModuleProxy.loadUnpackersWithCode(
-      value.code!,
+      getInitDataCode(value)!,
       value.location ?? '',
       value.sourceMap ?? '',
-      synchronizable.code!,
+      getInitDataCode(synchronizable)!,
       synchronizable.location ?? '',
       synchronizable.sourceMap ?? '',
-      customSerializable.code!,
+      getInitDataCode(customSerializable)!,
       customSerializable.location ?? '',
       customSerializable.sourceMap ?? '',
-      shareableHost.code!,
+      getInitDataCode(shareableHost)!,
       shareableHost.location ?? '',
       shareableHost.sourceMap ?? '',
-      shareableGuest.code!,
+      getInitDataCode(shareableGuest)!,
       shareableGuest.location ?? '',
       shareableGuest.sourceMap ?? '',
-      remoteFunction.code!,
+      getInitDataCode(remoteFunction)!,
       remoteFunction.location ?? '',
       remoteFunction.sourceMap ?? ''
     );
