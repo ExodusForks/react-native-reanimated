@@ -38,11 +38,14 @@ jsi::Value makeSerializableNull(jsi::Runtime &rt) {
 }
 
 jsi::Value makeSerializableWorklet(jsi::Runtime &rt, const jsi::Object &object, const bool &shouldRetainRemote) {
-  std::shared_ptr<Serializable> serializable;
+  std::shared_ptr<SerializableWorklet> serializable;
   if (shouldRetainRemote) {
     serializable = std::make_shared<RetainingSerializable<SerializableWorklet>>(rt, object);
   } else {
     serializable = std::make_shared<SerializableWorklet>(rt, object);
+  }
+  if (!isWorkletRuntime(rt)) {
+    serializable->trustForRNRuntime();
   }
   return SerializableJSRef::newNativeStateObject(rt, serializable);
 }

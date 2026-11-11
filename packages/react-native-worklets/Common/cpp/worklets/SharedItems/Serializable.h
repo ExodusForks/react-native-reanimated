@@ -178,6 +178,15 @@ class SerializableObject : public Serializable {
 
   jsi::Value toJSValue(jsi::Runtime &rt) override;
 
+  [[nodiscard]] std::shared_ptr<Serializable> getProperty(const std::string &name) const {
+    for (const auto &[key, value] : data_) {
+      if (key == name) {
+        return value;
+      }
+    }
+    return nullptr;
+  }
+
  protected:
   std::vector<std::pair<std::string, std::shared_ptr<Serializable>>> data_;
   std::shared_ptr<jsi::NativeState> nativeState_;
@@ -282,7 +291,13 @@ class SerializableWorklet : public SerializableObject {
   }
 
   jsi::Value toJSValue(jsi::Runtime &rt) override;
+
+  // Allows evaluation of this worklet's code on the React Native runtime.
+  // Call it only for worklets serialized on the React Native runtime.
+  void trustForRNRuntime() const;
 };
+
+[[nodiscard]] bool isWorkletRuntime(jsi::Runtime &rt);
 
 class SerializableImport : public Serializable {
  public:
@@ -325,6 +340,10 @@ class SerializableString : public Serializable {
 
   jsi::Value toJSValue(jsi::Runtime &rt) override;
 
+  [[nodiscard]] const std::string &getValue() const {
+    return data_;
+  }
+
  protected:
   const std::string data_;
 };
@@ -361,6 +380,13 @@ class SerializableScalar : public Serializable {
   explicit SerializableScalar(std::nullptr_t) : Serializable(ValueType::NullType) {}
 
   jsi::Value toJSValue(jsi::Runtime &) override;
+
+  [[nodiscard]] std::optional<double> getNumber() const {
+    if (valueType_ != ValueType::NumberType) {
+      return std::nullopt;
+    }
+    return data_.number;
+  }
 
  protected:
   union Data {

@@ -2,14 +2,17 @@
 #include <react/debug/react_native_assert.h>
 #include <worklets/SharedItems/Serializable.h>
 #include <worklets/SharedItems/SerializableFactory.h>
-#include <worklets/Tools/ScriptBuffer.h>
 #include <worklets/WorkletRuntime/RuntimeData.h>
 #include <worklets/WorkletRuntime/RuntimeManager.h>
 #include <worklets/WorkletRuntime/WorkletRuntime.h>
 
 #include <memory>
+#include <mutex>
+#include <optional>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -19,34 +22,47 @@ namespace worklets {
 
 namespace {
 
-jsi::Function makeEvaluateWorkletFunction(jsi::Runtime &rt, const jsi::Value &worklet) {
-  auto initData = worklet.asObject(rt).getProperty(rt, "__initData");
-  if (!initData.isObject()) {
-    throw jsi::JSError(rt, "[Worklets] Worklet is missing its init data.");
-  }
-  auto initDataObject = initData.asObject(rt);
+struct WorkletSource {
+  double hash;
+  std::string code;
+  std::string location;
+};
 
-  auto bytecode = initDataObject.getProperty(rt, "bytecode");
-  if (bytecode.isObject() && bytecode.asObject(rt).isArrayBuffer(rt)) {
-    auto buffer = bytecode.asObject(rt).getArrayBuffer(rt);
-    auto data =
-        std::make_shared<BytecodeBuffer>(std::vector<uint8_t>(buffer.data(rt), buffer.data(rt) + buffer.size(rt)));
-    return jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "evaluateWorkletFunction"),
-        0,
-        [data](jsi::Runtime &rt, const jsi::Value &, const jsi::Value *, size_t) -> jsi::Value {
-          return rt.evaluateJavaScript(data, "");
-        });
-  }
+std::mutex trustedRNWorkletsMutex;
+std::unordered_map<double, std::unordered_set<std::string>> trustedRNWorklets;
 
-  auto code = initDataObject.getProperty(rt, "__reanimated_workletCode");
-  if (!code.isString()) {
+std::optional<WorkletSource> getWorkletSource(const SerializableWorklet &worklet) {
+  const auto hash = std::dynamic_pointer_cast<SerializableScalar>(worklet.getProperty("__workletHash"));
+  const auto initData = std::dynamic_pointer_cast<SerializableObject>(worklet.getProperty("__initData"));
+  if (!hash || !hash->getNumber().has_value() || !initData) {
+    return std::nullopt;
+  }
+  const auto code = std::dynamic_pointer_cast<SerializableString>(initData->getProperty("__reanimated_workletCode"));
+  if (!code) {
+    return std::nullopt;
+  }
+  const auto location = std::dynamic_pointer_cast<SerializableString>(initData->getProperty("location"));
+  return WorkletSource{
+      hash->getNumber().value(), code->getValue(), location ? location->getValue() : std::string("worklet")};
+}
+
+bool isTrustedForRNRuntime(const WorkletSource &source) {
+  std::lock_guard lock(trustedRNWorkletsMutex);
+  const auto entry = trustedRNWorklets.find(source.hash);
+  return entry != trustedRNWorklets.end() && entry->second.contains(source.code);
+}
+
+jsi::Function makeEvaluateWorkletFunction(jsi::Runtime &rt, const SerializableWorklet &worklet) {
+  auto source = getWorkletSource(worklet);
+  if (!source.has_value()) {
     throw jsi::JSError(rt, "[Worklets] Worklet is missing its code.");
   }
-  auto buffer = std::make_shared<const jsi::StringBuffer>(code.getString(rt).utf8(rt));
-  auto location = initDataObject.getProperty(rt, "location");
-  auto sourceURL = location.isString() ? location.getString(rt).utf8(rt) : std::string("worklet");
+  if (!isWorkletRuntime(rt) && !isTrustedForRNRuntime(source.value())) {
+    throw jsi::JSError(
+        rt, "[Worklets] Refusing to evaluate worklet code that wasn't serialized on the React Native runtime.");
+  }
+  auto buffer = std::make_shared<const jsi::StringBuffer>(std::move(source->code));
+  auto sourceURL = std::move(source->location);
   return jsi::Function::createFromHostFunction(
       rt,
       jsi::PropNameID::forAscii(rt, "evaluateWorkletFunction"),
@@ -72,7 +88,10 @@ jsi::Value makeSerializableClone(
   std::shared_ptr<Serializable> serializable;
   if (value.isObject()) {
     auto object = value.asObject(rt);
-    if (!object.getProperty(rt, "__workletHash").isUndefined()) {
+    const auto isFunctionSource = nativeStateSource.isObject() && nativeStateSource.asObject(rt).isFunction(rt);
+    if (isFunctionSource && !object.getProperty(rt, "__workletHash").isUndefined()) {
+      // Only real worklet functions take this branch. A plain object with a
+      // forged `__workletHash` stays data, so it can't smuggle code.
       // We pass `false` because this function is invoked only
       // by `makeSerializableCloneOnUIRecursive` which doesn't
       // make Retaining Serializables.
@@ -318,7 +337,20 @@ jsi::Value SerializableWorklet::toJSValue(jsi::Runtime &rt) {
       obj,
       jsi::String::createFromAscii(rt, "Worklet"),
       jsi::Value::undefined(),
-      makeEvaluateWorkletFunction(rt, obj));
+      makeEvaluateWorkletFunction(rt, *this));
+}
+
+void SerializableWorklet::trustForRNRuntime() const {
+  auto source = getWorkletSource(*this);
+  if (!source.has_value()) {
+    return;
+  }
+  std::lock_guard lock(trustedRNWorkletsMutex);
+  trustedRNWorklets[source->hash].insert(std::move(source->code));
+}
+
+bool isWorkletRuntime(jsi::Runtime &rt) {
+  return rt.getRuntimeData(RuntimeData::weakRuntimeUUID) != nullptr;
 }
 
 jsi::Value SerializableImport::toJSValue(jsi::Runtime &rt) {
