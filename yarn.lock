@@ -4044,6 +4044,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@exodus/react-native-worklets@workspace:packages/react-native-worklets, react-native-worklets@workspace:packages/react-native-worklets":
+  version: 0.0.0-use.local
+  resolution: "@exodus/react-native-worklets@workspace:packages/react-native-worklets"
+  dependencies:
+    "@babel/cli": "npm:7.28.3"
+    "@babel/core": "npm:7.28.4"
+    "@babel/generator": "npm:^7.27.1"
+    "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
+    "@babel/plugin-transform-class-properties": "npm:^7.28.6"
+    "@babel/plugin-transform-classes": "npm:^7.28.6"
+    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.28.6"
+    "@babel/plugin-transform-optional-chaining": "npm:^7.28.6"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.27.1"
+    "@babel/plugin-transform-template-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-unicode-regex": "npm:^7.27.1"
+    "@babel/preset-typescript": "npm:^7.28.5"
+    "@babel/traverse": "npm:^7.27.1"
+    "@babel/types": "npm:^7.27.1"
+    "@react-native-community/cli": "npm:20.1.0"
+    "@react-native/eslint-config": "npm:0.83.0"
+    "@react-native/jest-preset": "patch:@react-native/jest-preset@npm%3A0.86.0#~/.yarn/patches/@react-native-jest-preset-npm-0.86.0-7a936108b4.patch"
+    "@types/jest": "npm:30.0.0"
+    "@types/node": "npm:24.7.0"
+    "@types/react": "npm:19.2.2"
+    clang-format-node: "npm:1.3.5"
+    code-tag: "npm:1.2.0"
+    convert-source-map: "npm:^2.0.0"
+    eslint: "npm:9.37.0"
+    is-tree-shakable: "npm:0.5.0"
+    jest: "npm:30.2.0"
+    knip: "npm:5.61.3"
+    madge: "npm:8.0.0"
+    react: "npm:19.2.3"
+    react-native: "npm:0.86.0"
+    semver: "npm:^7.7.4"
+    typescript: "npm:5.9.3"
+  peerDependencies:
+    "@babel/core": "*"
+    "@react-native/metro-config": "*"
+    react: "*"
+    react-native: 0.83 - 0.86
+  languageName: unknown
+  linkType: soft
+
 "@expo/cli@npm:54.0.11":
   version: 54.0.11
   resolution: "@expo/cli@npm:54.0.11"
@@ -14174,7 +14218,7 @@ __metadata:
     react-native-safe-area-context: "patch:react-native-safe-area-context@npm%3A5.7.0#~/.yarn/patches/react-native-safe-area-context-npm-5.7.0-fcff6bf187.patch"
     react-native-screens: "patch:react-native-screens@npm%3A4.24.0#~/.yarn/patches/react-native-screens-npm-4.24.0-c572d01561.patch"
     react-native-svg: "npm:15.15.4"
-    react-native-worklets: "workspace:*"
+    react-native-worklets: "workspace:packages/react-native-worklets"
     react-strict-dom: "npm:0.0.55"
     react-test-renderer: "npm:19.2.3"
     typescript: "npm:5.9.3"
@@ -22719,7 +22763,7 @@ __metadata:
     react-native: "npm:0.81.6"
     react-native-macos: "patch:react-native-macos@npm%3A0.81.7#~/.yarn/patches/react-native-macos-npm-0.81.7.patch"
     react-native-reanimated: "workspace:*"
-    react-native-worklets: "workspace:*"
+    react-native-worklets: "workspace:packages/react-native-worklets"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -25422,7 +25466,7 @@ __metadata:
     react-native: "npm:0.86.0"
     react-native-reanimated: "workspace:*"
     react-native-web: "npm:0.21.1"
-    react-native-worklets: "workspace:*"
+    react-native-worklets: "workspace:packages/react-native-worklets"
     start-server-and-test: "npm:2.1.2"
     typescript: "npm:5.9.3"
     webpack: "npm:5.105.4"
@@ -28694,7 +28738,7 @@ __metadata:
     react-native-is-edge-to-edge: "npm:^1.3.1"
     react-native-svg: "npm:15.15.4"
     react-native-web: "npm:0.21.1"
-    react-native-worklets: "workspace:*"
+    react-native-worklets: "workspace:packages/react-native-worklets"
     react-test-renderer: "npm:19.2.3"
     semver: "npm:^7.7.3"
     typescript: "npm:5.9.3"
@@ -28878,50 +28922,6 @@ __metadata:
   checksum: 10/5c728806660e8798fc39dd7733129d69254413800ae3ecef64c999720a7545125ffa52e93f3d5715aec96fc79d97f60b4be3e5dabd39a7a051f6dd30b10778a2
   languageName: node
   linkType: hard
-
-"react-native-worklets@workspace:*, react-native-worklets@workspace:packages/react-native-worklets":
-  version: 0.0.0-use.local
-  resolution: "react-native-worklets@workspace:packages/react-native-worklets"
-  dependencies:
-    "@babel/cli": "npm:7.28.3"
-    "@babel/core": "npm:7.28.4"
-    "@babel/generator": "npm:^7.27.1"
-    "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
-    "@babel/plugin-transform-class-properties": "npm:^7.28.6"
-    "@babel/plugin-transform-classes": "npm:^7.28.6"
-    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.28.6"
-    "@babel/plugin-transform-optional-chaining": "npm:^7.28.6"
-    "@babel/plugin-transform-shorthand-properties": "npm:^7.27.1"
-    "@babel/plugin-transform-template-literals": "npm:^7.27.1"
-    "@babel/plugin-transform-unicode-regex": "npm:^7.27.1"
-    "@babel/preset-typescript": "npm:^7.28.5"
-    "@babel/traverse": "npm:^7.27.1"
-    "@babel/types": "npm:^7.27.1"
-    "@react-native-community/cli": "npm:20.1.0"
-    "@react-native/eslint-config": "npm:0.83.0"
-    "@react-native/jest-preset": "patch:@react-native/jest-preset@npm%3A0.86.0#~/.yarn/patches/@react-native-jest-preset-npm-0.86.0-7a936108b4.patch"
-    "@types/jest": "npm:30.0.0"
-    "@types/node": "npm:24.7.0"
-    "@types/react": "npm:19.2.2"
-    clang-format-node: "npm:1.3.5"
-    code-tag: "npm:1.2.0"
-    convert-source-map: "npm:^2.0.0"
-    eslint: "npm:9.37.0"
-    is-tree-shakable: "npm:0.5.0"
-    jest: "npm:30.2.0"
-    knip: "npm:5.61.3"
-    madge: "npm:8.0.0"
-    react: "npm:19.2.3"
-    react-native: "npm:0.86.0"
-    semver: "npm:^7.7.4"
-    typescript: "npm:5.9.3"
-  peerDependencies:
-    "@babel/core": "*"
-    "@react-native/metro-config": "*"
-    react: "*"
-    react-native: 0.83 - 0.86
-  languageName: unknown
-  linkType: soft
 
 "react-native@npm:0.81.6":
   version: 0.81.6
@@ -32571,7 +32571,7 @@ __metadata:
     react: "npm:19.2.3"
     react-native: "patch:react-native-tvos@npm%3A0.86.0-1#~/.yarn/patches/react-native-tvos-npm-0.86.0-1-2baf7632d6.patch"
     react-native-reanimated: "workspace:*"
-    react-native-worklets: "workspace:*"
+    react-native-worklets: "workspace:packages/react-native-worklets"
     react-test-renderer: "npm:19.2.3"
     typescript: "npm:5.9.3"
   languageName: unknown

@@ -35,7 +35,7 @@
     "type:check:strict": "yarn type:check:strict:src && yarn type:check:strict:app",
     "type:check:strict:src": "yarn tsc --noEmit --customConditions react-native-strict-api",
     "type:check:strict:app": "yarn workspace common-app type:check:strict",
-    "build": "yarn workspace react-native-worklets build && yarn set-version && yarn run --top-level bob build",
+    "build": "yarn workspace @exodus/react-native-worklets build && yarn set-version && yarn run --top-level bob build",
     "prepack": "yarn build",
     "circular-dependency-check": "yarn madge --extensions js,jsx --circular lib",
     "tree-shake:check:web": "yarn is-tree-shakable --resolution web",
@@ -136,7 +136,7 @@
     "react-native": "0.86.0",
     "react-native-svg": "15.15.4",
     "react-native-web": "0.21.1",
-    "react-native-worklets": "workspace:*",
+    "react-native-worklets": "workspace:packages/react-native-worklets",
     "react-test-renderer": "19.2.3",
     "typescript": "5.9.3"
   },
