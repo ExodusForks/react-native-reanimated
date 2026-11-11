@@ -186,6 +186,7 @@ void WorkletRuntimeDecorator::decorate(
           }));
   rt.global().setProperty(rt, "performance", performance);
 
+#ifndef NDEBUG
   rt.global().setProperty(
       rt,
       "_startProfiling",
@@ -202,6 +203,7 @@ void WorkletRuntimeDecorator::decorate(
     std::string path = stopProfiling(rt);
     return jsi::String::createFromUtf8(rt, path);
   });
+#endif // NDEBUG
 
   jsi_utils::installJsiFunction(
       rt,
