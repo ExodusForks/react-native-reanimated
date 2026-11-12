@@ -115,9 +115,12 @@ describe('native dynamic code surface', () => {
     expect(nativeFilesMatching(/\bevaluateJavaScript\s*\(/)).toEqual([
       'Common/cpp/worklets/SharedItems/Serializable.cpp',
       'Common/cpp/worklets/SharedItems/UnpackerLoader.h',
-      'Common/cpp/worklets/WorkletRuntime/RuntimeManager.cpp',
       'Common/cpp/worklets/WorkletRuntime/ScriptLoader.h',
     ]);
+  });
+
+  test('exposes no module update propagation', () => {
+    expect(nativeFilesMatching(/propagateModuleUpdate/)).toEqual([]);
   });
 
   test('installs no eval helpers on worklet runtimes', () => {

@@ -671,18 +671,6 @@ jsi::Object JSIWorkletsModuleProxy::toOptimizedObject(jsi::Runtime &rt) const {
         return SerializableJSRef::newNativeStateObject(rt, shareable);
       });
 
-#ifndef NDEBUG
-  jsi_utils::addMethod<2>(
-      rt,
-      obj,
-      "propagateModuleUpdate",
-      [runtimeManager = runtimeManager_](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&args)[2]) {
-        const auto code = at<0>(args).getString(rt).utf8(rt);
-        const auto sourceUrl = at<1>(args).getString(rt).utf8(rt);
-        runtimeManager->propagateModuleUpdate(code, sourceUrl);
-      });
-#endif // NDEBUG
-
   jsi_utils::addMethod<0>(
       rt, obj, "getUIRuntimeHolder", [uiWorkletRuntime = uiWorkletRuntime_](jsi::Runtime &rt, const jsi::Value &) {
         const auto strongUIWorkletRuntime = uiWorkletRuntime.lock();
