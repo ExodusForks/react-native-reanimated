@@ -17,7 +17,9 @@ class SensorSetter : public HybridClass<SensorSetter> {
     size_t size = value->size();
     auto elements = value->getRegion(0, size);
     double array[7];
-    for (size_t i = 0; i < size; i++) {
+    // Security: bounds check to prevent buffer overflow (0080)
+    size_t max = sizeof(array) / sizeof(array[0]);
+    for (size_t i = 0; i < size && i < max; i++) {
       array[i] = elements[i];
     }
     callback_(array, orientationDegrees);

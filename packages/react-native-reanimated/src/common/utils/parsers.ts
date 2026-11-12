@@ -10,11 +10,14 @@ const LENGTH_MAPPINGS = [
   'spreadDistance',
 ] as const;
 
-const SHADOW_PARTS_REGEX = /(?:[^\s()]+|\([^()]*\))+/g;
-const SHADOW_SPLIT_REGEX = /(?:[^,()]+|\([^)]*\))+(?=\s*,|$)/g;
-
 export function parseBoxShadowString(value: string) {
   'worklet';
+  // NOTE: Captured RegExp literals cannot be cloned by the Exodus AppSec
+  // `cloneRegExp` hardening in `@exodus/react-native-worklets`. Declaring
+  // them inside the worklet body keeps the literal in the worklet's
+  // serialized source so each runtime evaluates a fresh RegExp instance.
+  const SHADOW_PARTS_REGEX = /(?:[^\s()]+|\([^()]*\))+/g;
+  const SHADOW_SPLIT_REGEX = /(?:[^,()]+|\([^)]*\))+(?=\s*,|$)/g;
   if (value === 'none') {
     return [];
   }

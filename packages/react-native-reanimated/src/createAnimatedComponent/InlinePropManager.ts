@@ -47,7 +47,8 @@ function getInlinePropsUpdate(styleValue: StyleProps): unknown {
     return styleValue.map(getInlinePropsUpdate);
   }
   if (styleValue && typeof styleValue === 'object') {
-    const update: Record<string, unknown> = {};
+    // Security: use null-prototype object to prevent prototype pollution (0074)
+    const update: Record<string, unknown> = Object.create(null);
     for (const [key, value] of Object.entries(styleValue)) {
       update[key] = getInlinePropsUpdate(value);
     }
@@ -61,10 +62,11 @@ function extractSharedValuesMapFromProps(
     Record<string, unknown> /* Initial component props */
   >
 ): Record<string, unknown> {
-  const inlineProps: Record<string, unknown> = {};
+  // Security: use null-prototype object + Object.entries to avoid prototype
+  // chain traversal (0074)
+  const inlineProps: Record<string, unknown> = Object.create(null);
 
-  for (const key in props) {
-    const value = props[key];
+  for (const [key, value] of Object.entries(props)) {
     if (key === 'style') {
       const styles = flattenArray<StyleProps>(props.style ?? []);
       styles.forEach((style) => {

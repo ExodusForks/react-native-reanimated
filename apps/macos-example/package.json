@@ -15,7 +15,7 @@
     "react": "19.1.4",
     "react-native": "0.81.6",
     "react-native-macos": "patch:react-native-macos@npm%3A0.81.7#~/.yarn/patches/react-native-macos-npm-0.81.7.patch",
-    "react-native-reanimated": "workspace:*",
+    "react-native-reanimated": "workspace:packages/react-native-reanimated",
     "react-native-worklets": "0.11.1"
   },
   "devDependencies": {

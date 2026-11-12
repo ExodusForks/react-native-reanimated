@@ -19,51 +19,6 @@ interface HSV {
   v: number;
 }
 
-const NUMBER: string = '[-+]?\\d*\\.?\\d+';
-const PERCENTAGE = NUMBER + '%';
-
-function call(...args: (RegExp | string)[]) {
-  return '\\(\\s*(' + args.join(')\\s*,?\\s*(') + ')\\s*\\)';
-}
-
-function callWithSlashSeparator(...args: (RegExp | string)[]) {
-  return (
-    '\\(\\s*(' +
-    args.slice(0, args.length - 1).join(')\\s*,?\\s*(') +
-    ')\\s*/\\s*(' +
-    args[args.length - 1] +
-    ')\\s*\\)'
-  );
-}
-
-function commaSeparatedCall(...args: (RegExp | string)[]) {
-  return '\\(\\s*(' + args.join(')\\s*,\\s*(') + ')\\s*\\)';
-}
-
-const MATCHERS = {
-  rgb: new RegExp('rgb' + call(NUMBER, NUMBER, NUMBER)),
-  rgba: new RegExp(
-    'rgba(' +
-      commaSeparatedCall(NUMBER, NUMBER, NUMBER, NUMBER) +
-      '|' +
-      callWithSlashSeparator(NUMBER, NUMBER, NUMBER, NUMBER) +
-      ')'
-  ),
-  hsl: new RegExp('hsl' + call(NUMBER, PERCENTAGE, PERCENTAGE)),
-  hsla: new RegExp(
-    'hsla(' +
-      commaSeparatedCall(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER) +
-      '|' +
-      callWithSlashSeparator(NUMBER, PERCENTAGE, PERCENTAGE, NUMBER) +
-      ')'
-  ),
-  hwb: new RegExp('hwb' + call(NUMBER, PERCENTAGE, PERCENTAGE)),
-  hex3: /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-  hex4: /^#([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-  hex6: /^#([0-9a-fA-F]{6})$/,
-  hex8: /^#([0-9a-fA-F]{8})$/,
-};
-
 function hue2rgb(p: number, q: number, t: number): number {
   'worklet';
   if (t < 0) {
@@ -368,136 +323,314 @@ export function normalizeColor(color: unknown): number | null {
     return null;
   }
 
-  let match: RegExpExecArray | null | undefined;
-
-  // Ordered based on occurrences on Facebook codebase
-  if ((match = MATCHERS.hex6.exec(color))) {
-    return Number.parseInt(match[1] + 'ff', 16) >>> 0;
+  let inputUntrimmed = color;
+  while (inputUntrimmed.includes('  ')) {
+    inputUntrimmed = inputUntrimmed.replace('  ', ' ');
   }
 
-  if (color in names) {
-    return names[color];
+  const input = inputUntrimmed.trim();
+  if (input.length > 0 && inputUntrimmed[0] === ' ' && input[0] === '#') {
+    return null;
   }
 
-  if ((match = MATCHERS.rgb.exec(color))) {
-    return (
-      // b
-      ((parse255(match[1]) << 24) | // r
-        (parse255(match[2]) << 16) | // g
-        (parse255(match[3]) << 8) |
-        0x000000ff) >>> // a
-      0
-    );
+  function isAllHexDigits(str: string): boolean {
+    for (let i = 0; i < str.length; i++) {
+      const c = str[i];
+      const isHex =
+        (c >= '0' && c <= '9') ||
+        (c >= 'a' && c <= 'f') ||
+        (c >= 'A' && c <= 'F');
+      if (!isHex) {
+        return false;
+      }
+    }
+    return true;
   }
 
-  if ((match = MATCHERS.rgba.exec(color))) {
-    // rgba(R G B / A) notation
-    if (match[6] !== undefined) {
-      return (
-        ((parse255(match[6]) << 24) | // r
-          (parse255(match[7]) << 16) | // g
-          (parse255(match[8]) << 8) | // b
-          parse1(match[9])) >>> // a
-        0
-      );
+  function isAllDigits(str: string): boolean {
+    for (let i = 0; i < str.length; i++) {
+      const c = str[i];
+      if (i === 0 && (c === '-' || c === '+')) {
+        continue;
+      }
+
+      const isNum = c >= '0' && c <= '9';
+      if (!isNum) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function isAllDigitsDot(str: string): boolean {
+    const newStr = str.replace('.', ''); // only remove one '.'
+    return isAllDigits(newStr);
+  }
+
+  function isPercentage(str: string): boolean {
+    if (!str.includes('%')) {
+      return false;
+    }
+    const digitDot = str.replace('%', '');
+    if (isAllDigitsDot(digitDot)) {
+      return true;
+    }
+    return false;
+  }
+
+  if (names[input] !== undefined) {
+    return names[input];
+  }
+
+  // #RRGGBB => 7 chars total, e.g. "#1a2B3C"
+  if (input.startsWith('#') && input.length === 7) {
+    const hexPart = input.slice(1); // e.g. "1a2B3C"
+    if (isAllHexDigits(hexPart)) {
+      return Number.parseInt(hexPart + 'ff', 16) >>> 0;
+    }
+  }
+  // rgb(R, G, B) or rgb(R G B)
+  if (input.startsWith('rgb(') && input.endsWith(')')) {
+    const inside = input.slice(4, -1).trim();
+    let parts = inside.split(',').map((p) => p.trim());
+
+    if (parts.length !== 3) {
+      parts = inside.split(' ').map((p) => p.trim());
+      if (parts.length !== 3) {
+        return null;
+      }
+    }
+    for (const part of parts) {
+      if (!isAllDigitsDot(part)) {
+        return null;
+      }
     }
 
-    // rgba(R, G, B, A) notation
-    return (
-      ((parse255(match[2]) << 24) | // r
-        (parse255(match[3]) << 16) | // g
-        (parse255(match[4]) << 8) | // b
-        parse1(match[5])) >>> // a
-      0
-    );
+    const r = parse255(parts[0]);
+    const g = parse255(parts[1]);
+    const b = parse255(parts[2]);
+    if (r != null && g != null && b != null) {
+      return ((r << 24) | (g << 16) | (b << 8) | 0xff) >>> 0;
+    }
   }
 
-  if ((match = MATCHERS.hex3.exec(color))) {
-    return (
-      Number.parseInt(
-        match[1] +
-          match[1] + // r
-          match[2] +
-          match[2] + // g
-          match[3] +
-          match[3] + // b
-          'ff', // a
-        16
-      ) >>> 0
-    );
+  // rgba(R, G, B, A) or rgba(R G B / A)
+  if (input.startsWith('rgba(') && input.endsWith(')')) {
+    const inside = input.slice(5, -1).trim();
+    if (inside.includes('/')) {
+      // slash form
+      const [beforeSlash, alphaPart] = inside.split('/');
+      if (beforeSlash && alphaPart) {
+        const rgbParts = beforeSlash
+          .trim()
+          .split(' ')
+          .map((x) => x.trim());
+        if (rgbParts.length === 3) {
+          for (const rgbPart of rgbParts) {
+            if (!isAllDigitsDot(rgbPart)) {
+              return null;
+            }
+          }
+          if (!isAllDigitsDot(alphaPart.trim())) {
+            return null;
+          }
+
+          const r = parse255(rgbParts[0]);
+          const g = parse255(rgbParts[1]);
+          const b = parse255(rgbParts[2]);
+          const a = parse1(alphaPart.trim());
+          if (r != null && g != null && b != null && a != null) {
+            return ((r << 24) | (g << 16) | (b << 8) | a) >>> 0;
+          }
+        }
+      }
+    } else {
+      // comma form
+      const parts = inside.split(',').map((p) => p.trim());
+      if (parts.length === 4) {
+        for (const part of parts) {
+          if (!isAllDigitsDot(part)) {
+            return null;
+          }
+        }
+        const r = parse255(parts[0]);
+        const g = parse255(parts[1]);
+        const b = parse255(parts[2]);
+        const a = parse1(parts[3]);
+        if (r != null && g != null && b != null && a != null) {
+          return ((r << 24) | (g << 16) | (b << 8) | a) >>> 0;
+        }
+      }
+    }
   }
 
-  // https://drafts.csswg.org/css-color-4/#hex-notation
-  if ((match = MATCHERS.hex8.exec(color))) {
-    return Number.parseInt(match[1], 16) >>> 0;
+  // #RGB => length=4, e.g. "#F0c"
+  if (input.startsWith('#') && input.length === 4) {
+    const shortHex = input.slice(1); // e.g. "F0c"
+    if (shortHex.length === 3 && isAllHexDigits(shortHex)) {
+      // Expand => "FF00cc" + "ff"
+      const expanded =
+        shortHex[0] +
+        shortHex[0] +
+        shortHex[1] +
+        shortHex[1] +
+        shortHex[2] +
+        shortHex[2] +
+        'ff';
+      return Number.parseInt(expanded, 16) >>> 0;
+    }
   }
 
-  if ((match = MATCHERS.hex4.exec(color))) {
-    return (
-      Number.parseInt(
-        match[1] +
-          match[1] + // r
-          match[2] +
-          match[2] + // g
-          match[3] +
-          match[3] + // b
-          match[4] +
-          match[4], // a
-        16
-      ) >>> 0
-    );
+  // #RRGGBBAA => length=9
+  if (input.startsWith('#') && input.length === 9) {
+    const hexPart = input.slice(1); // e.g. "1a2b3cFF"
+    if (hexPart.length === 8 && isAllHexDigits(hexPart)) {
+      return Number.parseInt(hexPart, 16) >>> 0;
+    }
   }
 
-  if ((match = MATCHERS.hsl.exec(color))) {
-    return (
-      (hslToRgb(
-        parse360(match[1]), // h
-        parsePercentage(match[2]), // s
-        parsePercentage(match[3]) // l
-      ) |
-        0x000000ff) >>> // a
-      0
-    );
+  // #RGBA => length=5
+  if (input.startsWith('#') && input.length === 5) {
+    const shortHex = input.slice(1); // e.g. "F0cF"
+    if (shortHex.length === 4 && isAllHexDigits(shortHex)) {
+      const expanded =
+        shortHex[0] +
+        shortHex[0] +
+        shortHex[1] +
+        shortHex[1] +
+        shortHex[2] +
+        shortHex[2] +
+        shortHex[3] +
+        shortHex[3];
+      return Number.parseInt(expanded, 16) >>> 0;
+    }
   }
 
-  if ((match = MATCHERS.hsla.exec(color))) {
-    // hsla(H S L / A) notation
-    if (match[6] !== undefined) {
-      return (
-        (hslToRgb(
-          parse360(match[6]), // h
-          parsePercentage(match[7]), // s
-          parsePercentage(match[8]) // l
-        ) |
-          parse1(match[9])) >>> // a
-        0
-      );
+  // hsl(H, S%, L%) or hsl(H S% L%)
+  if (input.startsWith('hsl(') && input.endsWith(')')) {
+    const inside = input.slice(4, -1).trim();
+    let parts = inside.split(',').map((p) => p.trim());
+
+    if (parts.length !== 3) {
+      parts = inside.split(' ').map((p) => p.trim());
+      if (parts.length !== 3) {
+        return null;
+      }
+    }
+    if (!isAllDigitsDot(parts[0])) {
+      return null;
+    }
+    if (!isPercentage(parts[1])) {
+      return null;
+    }
+    if (!isPercentage(parts[2])) {
+      return null;
     }
 
-    // hsla(H, S, L, A) notation
-    return (
-      (hslToRgb(
-        parse360(match[2]), // h
-        parsePercentage(match[3]), // s
-        parsePercentage(match[4]) // l
-      ) |
-        parse1(match[5])) >>> // a
-      0
-    );
+    const h = parse360(parts[0]); // can be negative, wraps via mod
+    const s = parsePercentage(parts[1]);
+    const l = parsePercentage(parts[2]);
+    if (h != null && s != null && l != null) {
+      const rgb = hslToRgb(h, s, l);
+      return (rgb | 0xff) >>> 0; // alpha=255
+    }
   }
 
-  if ((match = MATCHERS.hwb.exec(color))) {
-    return (
-      (hwbToRgb(
-        parse360(match[1]), // h
-        parsePercentage(match[2]), // w
-        parsePercentage(match[3]) // b
-      ) |
-        0x000000ff) >>> // a
-      0
-    );
+  // hsla(H, S%, L%, A) or hsla(H S% L% / A)
+  if (input.startsWith('hsla(') && input.endsWith(')')) {
+    const inside = input.slice(5, -1).trim();
+    if (inside.includes('/')) {
+      // slash form => "H, S%, L% / A"
+      const [beforeSlash, alphaPart] = inside.split('/');
+      if (beforeSlash && alphaPart) {
+        const hslParts = beforeSlash
+          .trim()
+          .split(' ')
+          .map((p) => p.trim());
+        if (hslParts.length === 3) {
+          if (!isAllDigitsDot(hslParts[0])) {
+            return null;
+          }
+          if (!isPercentage(hslParts[1])) {
+            return null;
+          }
+          if (!isPercentage(hslParts[2])) {
+            return null;
+          }
+          if (!isAllDigitsDot(alphaPart.trim())) {
+            return null;
+          }
+
+          const h = parse360(hslParts[0]);
+          const s = parsePercentage(hslParts[1]);
+          const l = parsePercentage(hslParts[2]);
+          const a = parse1(alphaPart.trim());
+          if (h != null && s != null && l != null && a != null) {
+            const rgb = hslToRgb(h, s, l);
+            return (rgb | a) >>> 0;
+          }
+        }
+      }
+    } else {
+      // comma form => "H, S%, L%, A"
+      const parts = inside.split(',').map((p) => p.trim());
+      if (parts.length === 4) {
+        if (!isAllDigitsDot(parts[0])) {
+          return null;
+        }
+        if (!isPercentage(parts[1])) {
+          return null;
+        }
+        if (!isPercentage(parts[2])) {
+          return null;
+        }
+        if (!isAllDigitsDot(parts[3])) {
+          return null;
+        }
+
+        const h = parse360(parts[0]);
+        const s = parsePercentage(parts[1]);
+        const l = parsePercentage(parts[2]);
+        const a = parse1(parts[3]);
+        if (h != null && s != null && l != null && a != null) {
+          const rgb = hslToRgb(h, s, l);
+          return (rgb | a) >>> 0;
+        }
+      }
+    }
   }
 
+  // hwb(H, W%, B%) or hwb(H W% B%) -- angle can be negative
+  if (input.startsWith('hwb(') && input.endsWith(')')) {
+    const inside = input.slice(4, -1).trim();
+    let parts = inside.split(',').map((p) => p.trim());
+
+    if (parts.length !== 3) {
+      parts = inside.split(' ').map((p) => p.trim());
+      if (parts.length !== 3) {
+        return null;
+      }
+    }
+    if (!isAllDigitsDot(parts[0])) {
+      return null;
+    }
+    if (!isPercentage(parts[1])) {
+      return null;
+    }
+    if (!isPercentage(parts[2])) {
+      return null;
+    }
+
+    const h = parse360(parts[0]);
+    const w = parsePercentage(parts[1]);
+    const b = parsePercentage(parts[2]);
+    if (h != null && w != null && b != null) {
+      const rgb = hwbToRgb(h, w, b);
+      return (rgb | 0xff) >>> 0; // alpha=255
+    }
+  }
+
+  // Nothing matched => invalid
   return null;
 }
 

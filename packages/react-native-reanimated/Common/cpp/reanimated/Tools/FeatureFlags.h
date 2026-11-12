@@ -1,4 +1,5 @@
 #pragma once
+#include <atomic>
 #include <string>
 #include <unordered_map>
 
@@ -39,6 +40,17 @@ class DynamicFeatureFlags {
 
  private:
   static std::unordered_map<std::string, bool> flags_;
+};
+
+// Per-flag runtime override for select flags that we need to toggle at runtime.
+// Defaults to the compile-time StaticFeatureFlags value. Thread-safe via atomic.
+class RuntimeFeatureFlags {
+ public:
+  static bool forceReactRenderForSettledAnimations();
+  static void setForceReactRenderForSettledAnimations(bool value);
+
+ private:
+  static std::atomic<bool> forceReactRenderForSettledAnimations_;
 };
 
 } // namespace reanimated

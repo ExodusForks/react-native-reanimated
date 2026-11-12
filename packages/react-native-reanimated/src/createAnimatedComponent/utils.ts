@@ -3,25 +3,29 @@ import type { StyleProps } from '../commonTypes';
 import type { CSSStyle } from '../css';
 import type { NestedArray } from './commonTypes';
 
+// Security: iterative stack-based flatten to prevent stack overflow via
+// deeply nested arrays (0073)
 export function flattenArray<T>(array: NestedArray<T>): T[] {
   if (!Array.isArray(array)) {
     return [array];
   }
-  const resultArr: T[] = [];
-
-  const _flattenArray = (arr: NestedArray<T>[]): void => {
-    arr.forEach((item) => {
-      if (Array.isArray(item)) {
-        _flattenArray(item);
-      } else {
-        resultArr.push(item);
+  const result: T[] = [];
+  const stack: NestedArray<T>[] = [array];
+  while (stack.length > 0) {
+    const item = stack.pop();
+    if (Array.isArray(item)) {
+      for (let i = item.length - 1; i >= 0; i--) {
+        stack.push(item[i]);
       }
-    });
-  };
-  _flattenArray(array);
-  return resultArr;
+    } else {
+      result.push(item as T);
+    }
+  }
+  return result;
 }
 
+// Security: use an own-property check instead of `in` to avoid prototype chain
+// lookups (0074)
 export const has = <K extends string>(
   key: K,
   x: unknown
@@ -30,7 +34,7 @@ export const has = <K extends string>(
     if (x === null || x === undefined) {
       return false;
     } else {
-      return key in x;
+      return Object.prototype.hasOwnProperty.call(x, key);
     }
   }
   return false;
