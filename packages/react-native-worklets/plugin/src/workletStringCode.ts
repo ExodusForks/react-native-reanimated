@@ -1,14 +1,17 @@
-import type { BabelFileResult, NodePath, PluginItem } from '@babel/core';
+import type { BabelFileResult, NodePath, PluginObj } from '@babel/core';
 import { traverse } from '@babel/core';
 import generate from '@babel/generator';
 import type {
   File as BabelFile,
+  FunctionDeclaration,
   Identifier,
   VariableDeclaration,
 } from '@babel/types';
 import {
   assertBlockStatement,
+  blockStatement,
   callExpression,
+  expressionStatement,
   functionExpression,
   identifier,
   isArrowFunctionExpression,
@@ -22,6 +25,7 @@ import {
   memberExpression,
   objectPattern,
   objectProperty,
+  returnStatement,
   thisExpression,
   variableDeclaration,
   variableDeclarator,
@@ -134,8 +138,9 @@ export function buildWorkletString(
   const transformed = workletTransformSync(code, {
     filename: state.file.opts.filename,
     extraPlugins: [
-      getClosurePlugin(closureVariables),
+      getClosurePlugin(closureVariables, workletName),
       ...(state.opts.extraPlugins ?? []),
+      require.resolve('@babel/plugin-transform-block-scoping'),
     ],
     extraPresets: state.opts.extraPresets,
     compact: true,
@@ -163,7 +168,7 @@ export function buildWorkletString(
     }
   }
 
-  const wrappedCode = `(${transformed.code})`;
+  const wrappedCode = `(${transformed.code?.replace(/;$/, '')})`;
 
   return [wrappedCode, JSON.stringify(sourceMap)];
 }
@@ -219,7 +224,7 @@ function prependRecursiveDeclaration(path: NodePath<WorkletizableFunction>) {
       path.scope.parent.bindings[path.node.id.name]?.references > 0;
     if (hasRecursiveCalls) {
       path.node.body.body.unshift(
-        variableDeclaration('const', [
+        variableDeclaration('var', [
           variableDeclarator(
             identifier(path.node.id.name),
             memberExpression(thisExpression(), identifier('_recur'))
@@ -231,8 +236,11 @@ function prependRecursiveDeclaration(path: NodePath<WorkletizableFunction>) {
 }
 
 /** Prepends necessary closure variables to the worklet function. */
-function getClosurePlugin(closureVariables: Array<Identifier>): PluginItem {
-  const closureDeclaration = variableDeclaration('const', [
+function getClosurePlugin(
+  closureVariables: Array<Identifier>,
+  workletName: string
+): PluginObj {
+  const closureDeclaration = variableDeclaration('var', [
     variableDeclarator(
       objectPattern(
         closureVariables.map((variable) =>
@@ -248,13 +256,55 @@ function getClosurePlugin(closureVariables: Array<Identifier>): PluginItem {
     ),
   ]);
 
+  const prependDeclarations = (path: NodePath<WorkletizableFunction>) => {
+    prependClosure(path, closureVariables, closureDeclaration);
+    prependRecursiveDeclaration(path);
+  };
+
   return {
     visitor: {
-      'FunctionDeclaration|FunctionExpression|ArrowFunctionExpression|ObjectMethod':
-        (path: NodePath<WorkletizableFunction>) => {
-          prependClosure(path, closureVariables, closureDeclaration);
-          prependRecursiveDeclaration(path);
-        },
+      FunctionDeclaration: prependDeclarations,
+      FunctionExpression: prependDeclarations,
+      ArrowFunctionExpression: prependDeclarations,
+      ObjectMethod: prependDeclarations,
+    },
+    post({ ast }) {
+      const { body } = ast.program;
+      if (body.length === 1) {
+        return;
+      }
+
+      const worklet = body.find(
+        (node): node is FunctionDeclaration =>
+          isFunctionDeclaration(node) && node.id?.name === workletName
+      );
+      assert(worklet, '[Worklets] Worklet function is undefined.');
+
+      const helpers = body.filter((node) => node !== worklet);
+      // Keep Babel helpers outside the worklet's local scope and inside its serialized code.
+      ast.program.body = [
+        expressionStatement(
+          callExpression(
+            functionExpression(
+              null,
+              [],
+              blockStatement([
+                ...helpers,
+                returnStatement(
+                  functionExpression(
+                    worklet.id,
+                    worklet.params,
+                    worklet.body,
+                    worklet.generator,
+                    worklet.async
+                  )
+                ),
+              ])
+            ),
+            []
+          )
+        ),
+      ];
     },
   };
 }

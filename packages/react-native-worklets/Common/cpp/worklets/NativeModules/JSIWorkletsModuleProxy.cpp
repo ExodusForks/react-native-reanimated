@@ -358,10 +358,9 @@ jsi::Object JSIWorkletsModuleProxy::toOptimizedObject(jsi::Runtime &rt) const {
       });
 
   jsi_utils::addMethod<2>(
-      rt, obj, "createSerializableRegExp", [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&args)[2]) {
-        const auto pattern = at<0>(args).getString(rt).utf8(rt);
-        const auto flags = at<1>(args).getString(rt).utf8(rt);
-        return makeSerializableRegExp(rt, pattern, flags);
+      rt, obj, "createSerializableRegExp", [](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&)[2]) {
+        throw jsi::JSError(rt, "[Worklets] RegExp has been disabled. Contact AppSec if needed.");
+        return jsi::Value::undefined();
       });
 
   jsi_utils::addMethod<4>(
@@ -671,18 +670,6 @@ jsi::Object JSIWorkletsModuleProxy::toOptimizedObject(jsi::Runtime &rt) const {
             std::make_shared<Shareable>(hostRuntime, initial, initSynchronously, decorateHost, decorateGuest);
         return SerializableJSRef::newNativeStateObject(rt, shareable);
       });
-
-#ifndef NDEBUG
-  jsi_utils::addMethod<2>(
-      rt,
-      obj,
-      "propagateModuleUpdate",
-      [runtimeManager = runtimeManager_](jsi::Runtime &rt, const jsi::Value &, const jsi::Value(&args)[2]) {
-        const auto code = at<0>(args).getString(rt).utf8(rt);
-        const auto sourceUrl = at<1>(args).getString(rt).utf8(rt);
-        runtimeManager->propagateModuleUpdate(code, sourceUrl);
-      });
-#endif // NDEBUG
 
   jsi_utils::addMethod<0>(
       rt, obj, "getUIRuntimeHolder", [uiWorkletRuntime = uiWorkletRuntime_](jsi::Runtime &rt, const jsi::Value &) {

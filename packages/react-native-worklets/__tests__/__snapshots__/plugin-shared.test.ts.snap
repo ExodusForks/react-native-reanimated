@@ -29,7 +29,7 @@ exports[`babel plugin core (bundle mode) closure handling captures locally bound
   f.__closure = {
     console
   };
-  f.__workletHash = 16880126594815;
+  f.__workletHash = 8721687495967;
   f.__pluginVersion = "x.y.z";
   return f;
 });"
@@ -47,7 +47,7 @@ exports[`babel plugin core (bundle mode) closure handling captures multiple clos
     a,
     b
   };
-  foo.__workletHash = 13996627615150;
+  foo.__workletHash = 16890854702606;
   foo.__pluginVersion = "x.y.z";
   return foo;
 });"
@@ -149,7 +149,9 @@ exports[`babel plugin core (bundle mode) worklet shapes workletizes unnamed Func
 exports[`babel plugin core (bundleless mode) autoworkletization workletizes useAnimatedStyle callback 1`] = `
 "import { useAnimatedStyle } from 'react-native-reanimated';
 const _worklet_16304373026183_init_data = {
-  code: "(function testJs1(){return{width:100};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function testJs1(){return{width:100};})"
+  },
   location: "test.js"
 };
 function Box() {
@@ -176,12 +178,14 @@ exports[`babel plugin core (bundleless mode) closure handling captures locally b
 "const console = {
   log: () => 42
 };
-const _worklet_16880126594815_init_data = {
-  code: "(function f_testJs1(){const{console}=this.__closure;console.log(console);})",
+const _worklet_8721687495967_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_testJs1(){var{console}=this.__closure;console.log(console);})"
+  },
   location: "test.js"
 };
 const f = function f_testJs1Factory({
-  _worklet_16880126594815_init_data,
+  _worklet_8721687495967_init_data,
   console
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -191,13 +195,13 @@ const f = function f_testJs1Factory({
   f.__closure = {
     console
   };
-  f.__workletHash = 16880126594815;
+  f.__workletHash = 8721687495967;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_16880126594815_init_data;
+  f.__initData = _worklet_8721687495967_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_16880126594815_init_data,
+  _worklet_8721687495967_init_data,
   console
 });"
 `;
@@ -205,12 +209,14 @@ const f = function f_testJs1Factory({
 exports[`babel plugin core (bundleless mode) closure handling captures multiple closure variables 1`] = `
 "const a = 1;
 const b = 2;
-const _worklet_13996627615150_init_data = {
-  code: "(function foo_testJs1(){const{a,b}=this.__closure;return a+b;})",
+const _worklet_16890854702606_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_testJs1(){var{a,b}=this.__closure;return a+b;})"
+  },
   location: "test.js"
 };
 const foo = function foo_testJs1Factory({
-  _worklet_13996627615150_init_data,
+  _worklet_16890854702606_init_data,
   a,
   b
 }) {
@@ -222,13 +228,13 @@ const foo = function foo_testJs1Factory({
     a,
     b
   };
-  foo.__workletHash = 13996627615150;
+  foo.__workletHash = 16890854702606;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_13996627615150_init_data;
+  foo.__initData = _worklet_16890854702606_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_13996627615150_init_data,
+  _worklet_16890854702606_init_data,
   a,
   b
 });"
@@ -236,7 +242,9 @@ const foo = function foo_testJs1Factory({
 
 exports[`babel plugin core (bundleless mode) closure handling does not capture default globals 1`] = `
 "const _worklet_861694609719_init_data = {
-  code: "(function f_testJs1(){console.log('hi');return Math.random();})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_testJs1(){console.log('hi');return Math.random();})"
+  },
   location: "test.js"
 };
 const f = function f_testJs1Factory({
@@ -266,7 +274,9 @@ exports[`babel plugin core (bundleless mode) without worklets leaves code untouc
 
 exports[`babel plugin core (bundleless mode) worklet shapes workletizes ArrowFunctionExpression 1`] = `
 "const _worklet_1844848981365_init_data = {
-  code: "(function testJs1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function testJs1(x){return x+2;})"
+  },
   location: "test.js"
 };
 const foo = function testJs1Factory({
@@ -289,7 +299,9 @@ const foo = function testJs1Factory({
 
 exports[`babel plugin core (bundleless mode) worklet shapes workletizes FunctionDeclaration 1`] = `
 "const _worklet_309188718540_init_data = {
-  code: "(function foo_testJs1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_testJs1(x){return x+2;})"
+  },
   location: "test.js"
 };
 const foo = function foo_testJs1Factory({
@@ -312,7 +324,9 @@ const foo = function foo_testJs1Factory({
 
 exports[`babel plugin core (bundleless mode) worklet shapes workletizes ObjectMethod 1`] = `
 "const _worklet_3278862305819_init_data = {
-  code: "(function bar_testJs1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_testJs1(x){return x+2;})"
+  },
   location: "test.js"
 };
 const foo = {
@@ -337,7 +351,9 @@ const foo = {
 
 exports[`babel plugin core (bundleless mode) worklet shapes workletizes named FunctionExpression 1`] = `
 "const _worklet_309188718540_init_data = {
-  code: "(function foo_testJs1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_testJs1(x){return x+2;})"
+  },
   location: "test.js"
 };
 const foo = function foo_testJs1Factory({
@@ -360,7 +376,9 @@ const foo = function foo_testJs1Factory({
 
 exports[`babel plugin core (bundleless mode) worklet shapes workletizes unnamed FunctionExpression 1`] = `
 "const _worklet_1844848981365_init_data = {
-  code: "(function testJs1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function testJs1(x){return x+2;})"
+  },
   location: "test.js"
 };
 const foo = function testJs1Factory({

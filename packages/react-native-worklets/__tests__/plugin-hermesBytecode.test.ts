@@ -73,7 +73,7 @@ describe('worklets babel plugin - hermesBytecode', () => {
     expect(code).toContain('bytecode:');
     expect(code).toContain('new Uint8Array(');
     expect(code).toContain('.buffer');
-    expect(code).not.toContain('code: "(function');
+    expect(code).not.toContain('__reanimated_workletCodeWrapper');
     expect(mockExecFileSync).toHaveBeenCalledWith(
       FAKE_HERMESC,
       expect.arrayContaining(['-emit-binary', '-']),
@@ -91,7 +91,9 @@ describe('worklets babel plugin - hermesBytecode', () => {
     });
     const { code } = runPlugin(worklet(2), { hermesBytecode: true });
     assert(code);
-    expect(code).toContain('code: "(function');
+    expect(code).toContain(
+      '[Symbol.for("__reanimated_workletCode")]: "(function'
+    );
     expect(code).not.toContain('bytecode:');
     expect(warnSpy).toHaveBeenCalled();
     expect(errorSpy).not.toHaveBeenCalled();
@@ -103,7 +105,9 @@ describe('worklets babel plugin - hermesBytecode', () => {
       getHBCBinary: undefined,
     });
     assert(code);
-    expect(code).toContain('code: "(function');
+    expect(code).toContain(
+      '[Symbol.for("__reanimated_workletCode")]: "(function'
+    );
     expect(code).not.toContain('bytecode:');
     expect(mockExecFileSync).not.toHaveBeenCalled();
     expect(warnSpy).toHaveBeenCalled();

@@ -15,13 +15,15 @@ exports[`babel plugin for DirectiveLiterals doesn't transform functions without 
 `;
 
 exports[`babel plugin for DirectiveLiterals doesn't transform string literals 1`] = `
-"const _worklet_10922646814144_init_data = {
-  code: "(function foo_null1(x){const bar='worklet';const baz=\\"worklet\\";})",
+"const _worklet_16447271694080_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(x){var bar='worklet';var baz=\\"worklet\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_10922646814144_init_data
+  _worklet_16447271694080_init_data
 }) {
   const _e = [new global.Error(), 1, -27];
   const foo = function (x) {
@@ -29,19 +31,21 @@ const foo = function foo_null1Factory({
     const baz = "worklet"; // prettier-ignore
   };
   foo.__closure = {};
-  foo.__workletHash = 10922646814144;
+  foo.__workletHash = 16447271694080;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_10922646814144_init_data;
+  foo.__initData = _worklet_16447271694080_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_10922646814144_init_data
+  _worklet_16447271694080_init_data
 });"
 `;
 
 exports[`babel plugin for DirectiveLiterals removes "worklet"; directive from worklets 1`] = `
 "const _worklet_12046452140568_init_data = {
-  code: "(function foo_null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -66,7 +70,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for DirectiveLiterals removes 'worklet'; directive from worklets 1`] = `
 "const _worklet_12046452140568_init_data = {
-  code: "(function foo_null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -151,7 +157,9 @@ exports[`babel plugin for Layout Animations doesn't workletize callback function
 
 exports[`babel plugin for Layout Animations workletizes callback functions on known chained methods after 1`] = `
 "const _worklet_15894285101311_init_data = {
-  code: "(function null1(){console.log('FadeIn with build after');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build after');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -175,7 +183,9 @@ FadeIn.withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on known chained methods after with new keyword 1`] = `
 "const _worklet_15894285101311_init_data = {
-  code: "(function null1(){console.log('FadeIn with build after');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build after');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -199,7 +209,9 @@ new FadeIn().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on known chained methods before 1`] = `
 "const _worklet_12078690053346_init_data = {
-  code: "(function null1(){console.log('FadeIn with build before');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build before');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -223,7 +235,9 @@ FadeIn.build().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on known chained methods before with new keyword 1`] = `
 "const _worklet_12078690053346_init_data = {
-  code: "(function null1(){console.log('FadeIn with build before');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build before');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -247,7 +261,9 @@ new FadeIn().build().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on longer chains of known objects 1`] = `
 "const _worklet_511094838491_init_data = {
-  code: "(function null1(){console.log('FadeIn with build');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -271,7 +287,9 @@ FadeIn.build().duration().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on longer chains of known objects with new keyword 1`] = `
 "const _worklet_511094838491_init_data = {
-  code: "(function null1(){console.log('FadeIn with build');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with build');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -295,7 +313,9 @@ new FadeIn().build().duration().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on unknown objects chained after 1`] = `
 "const _worklet_12590719392748_init_data = {
-  code: "(function null1(){console.log('FadeIn with AmogusIn after');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with AmogusIn after');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -319,7 +339,9 @@ FadeIn.withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes callback functions on unknown objects chained after with new keyword 1`] = `
 "const _worklet_12590719392748_init_data = {
-  code: "(function null1(){console.log('FadeIn with AmogusIn after');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn with AmogusIn after');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -343,7 +365,9 @@ new FadeIn().withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes unchained callback functions automatically 1`] = `
 "const _worklet_86581056303_init_data = {
-  code: "(function null1(){console.log('FadeIn');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -367,7 +391,9 @@ FadeIn.withCallback(function null1Factory({
 
 exports[`babel plugin for Layout Animations workletizes unchained callback functions automatically with new keyword 1`] = `
 "const _worklet_86581056303_init_data = {
-  code: "(function null1(){console.log('FadeIn');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('FadeIn');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -391,7 +417,9 @@ new FadeIn().withCallback(function null1Factory({
 
 exports[`babel plugin for async functions makes an async worklet factory 1`] = `
 "const _worklet_6889153741475_init_data = {
-  code: "(async function foo_null1(){await Promise.resolve();})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(async function foo_null1(){await Promise.resolve();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -415,7 +443,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for async functions makes an async worklet string 1`] = `
 "const _worklet_6889153741475_init_data = {
-  code: "(async function foo_null1(){await Promise.resolve();})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(async function foo_null1(){await Promise.resolve();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -442,7 +472,9 @@ exports[`babel plugin for class worklets workletizes class field 1`] = `
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 var _worklet_5242161306529_init_data = {
-  code: "(function null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -471,13 +503,15 @@ exports[`babel plugin for class worklets workletizes constructor 1`] = `
 "var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-var _worklet_15863994936429_init_data = {
-  code: "(function Foo_null1(x){const Foo_null1=this._recur;const{_classCallCheck}=this.__closure;_classCallCheck(this,Foo_null1);this.x=x;})",
+var _worklet_11071809944557_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Foo_null1(x){var Foo_null1=this._recur;var{_classCallCheck}=this.__closure;_classCallCheck(this,Foo_null1);this.x=x;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 var Foo = (0, _createClass2.default)(function Foo_null1Factory({
-  _worklet_15863994936429_init_data,
+  _worklet_11071809944557_init_data,
   _classCallCheck
 }) {
   var _e = [new global.Error(), -2, -27];
@@ -488,13 +522,13 @@ var Foo = (0, _createClass2.default)(function Foo_null1Factory({
   Foo.__closure = {
     _classCallCheck
   };
-  Foo.__workletHash = 15863994936429;
+  Foo.__workletHash = 11071809944557;
   Foo.__pluginVersion = "x.y.z";
-  Foo.__initData = _worklet_15863994936429_init_data;
+  Foo.__initData = _worklet_11071809944557_init_data;
   Foo.__stackDetails = _e;
   return Foo;
 }({
-  _worklet_15863994936429_init_data,
+  _worklet_11071809944557_init_data,
   _classCallCheck: _classCallCheck2.default
 }));"
 `;
@@ -504,8 +538,10 @@ exports[`babel plugin for class worklets workletizes getter 1`] = `
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var x = 5;
-var _worklet_7889222906109_init_data = {
-  code: "(function null1(){const{x}=this.__closure;return x+2;})",
+var _worklet_17434696611933_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var{x}=this.__closure;return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -516,7 +552,7 @@ var Foo = function () {
   return (0, _createClass2.default)(Foo, [{
     key: "bar",
     get: function null1Factory({
-      _worklet_7889222906109_init_data,
+      _worklet_17434696611933_init_data,
       x
     }) {
       var _e = [new global.Error(), -2, -27];
@@ -526,13 +562,13 @@ var Foo = function () {
       null1.__closure = {
         x
       };
-      null1.__workletHash = 7889222906109;
+      null1.__workletHash = 17434696611933;
       null1.__pluginVersion = "x.y.z";
-      null1.__initData = _worklet_7889222906109_init_data;
+      null1.__initData = _worklet_17434696611933_init_data;
       null1.__stackDetails = _e;
       return null1;
     }({
-      _worklet_7889222906109_init_data,
+      _worklet_17434696611933_init_data,
       x
     })
   }]);
@@ -544,7 +580,9 @@ exports[`babel plugin for class worklets workletizes instance method 1`] = `
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var _worklet_17127187394127_init_data = {
-  code: "(function bar_null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -579,7 +617,9 @@ exports[`babel plugin for class worklets workletizes setter 1`] = `
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var _worklet_10034678309414_init_data = {
-  code: "(function null1(x){this.x=x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(x){this.x=x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -617,7 +657,9 @@ var Foo = (0, _createClass2.default)(function Foo() {
   (0, _classCallCheck2.default)(this, Foo);
 });
 var _worklet_5242161306529_init_data = {
-  code: "(function null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -644,7 +686,9 @@ exports[`babel plugin for class worklets workletizes static method 1`] = `
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 var _worklet_17127187394127_init_data = {
-  code: "(function bar_null1(x){return x+2;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(x){return x+2;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -679,13 +723,15 @@ exports[`babel plugin for closure capturing captures worklets environment 1`] = 
 const objX = {
   x
 };
-const _worklet_2667862979572_init_data = {
-  code: "(function f_null1(){const{x,objX}=this.__closure;return{res:x+objX.x};})",
+const _worklet_3718760958996_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){var{x,objX}=this.__closure;return{res:x+objX.x};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const f = function f_null1Factory({
-  _worklet_2667862979572_init_data,
+  _worklet_3718760958996_init_data,
   x,
   objX
 }) {
@@ -699,13 +745,13 @@ const f = function f_null1Factory({
     x,
     objX
   };
-  f.__workletHash = 2667862979572;
+  f.__workletHash = 3718760958996;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_2667862979572_init_data;
+  f.__initData = _worklet_3718760958996_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_2667862979572_init_data,
+  _worklet_3718760958996_init_data,
   x,
   objX
 });"
@@ -713,7 +759,9 @@ const f = function f_null1Factory({
 
 exports[`babel plugin for closure capturing doesn't capture arguments 1`] = `
 "const _worklet_17546282635735_init_data = {
-  code: "(function f_null1(a,b,c){console.log(arguments);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(a,b,c){console.log(arguments);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -737,7 +785,9 @@ const f = function f_null1Factory({
 
 exports[`babel plugin for closure capturing doesn't capture custom globals 1`] = `
 "const _worklet_6576012734481_init_data = {
-  code: "(function f_null1(){console.log(foo);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){console.log(foo);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -761,13 +811,15 @@ const f = function f_null1Factory({
 
 exports[`babel plugin for closure capturing doesn't capture locally bound variables named like custom globals 1`] = `
 "const foo = 42;
-const _worklet_12399805416363_init_data = {
-  code: "(function f_null1(){const{foo}=this.__closure;console.log(foo);})",
+const _worklet_2723202950923_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){var{foo}=this.__closure;console.log(foo);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const f = function f_null1Factory({
-  _worklet_12399805416363_init_data,
+  _worklet_2723202950923_init_data,
   foo
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -777,13 +829,13 @@ const f = function f_null1Factory({
   f.__closure = {
     foo
   };
-  f.__workletHash = 12399805416363;
+  f.__workletHash = 2723202950923;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_12399805416363_init_data;
+  f.__initData = _worklet_2723202950923_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_12399805416363_init_data,
+  _worklet_2723202950923_init_data,
   foo
 });"
 `;
@@ -792,13 +844,15 @@ exports[`babel plugin for closure capturing doesn't capture objects' properties 
 "const foo = {
   bar: 42
 };
-const _worklet_105746754388_init_data = {
-  code: "(function f_null1(){const{foo}=this.__closure;console.log(foo.bar);})",
+const _worklet_17158966858356_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){var{foo}=this.__closure;console.log(foo.bar);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const f = function f_null1Factory({
-  _worklet_105746754388_init_data,
+  _worklet_17158966858356_init_data,
   foo
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -808,20 +862,22 @@ const f = function f_null1Factory({
   f.__closure = {
     foo
   };
-  f.__workletHash = 105746754388;
+  f.__workletHash = 17158966858356;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_105746754388_init_data;
+  f.__initData = _worklet_17158966858356_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_105746754388_init_data,
+  _worklet_17158966858356_init_data,
   foo
 });"
 `;
 
 exports[`babel plugin for closure capturing doesn't implicitly captures globals in strict mode 1`] = `
 "const _worklet_11257575550579_init_data = {
-  code: "(function f_null1(){globalStuff();})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){globalStuff();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -844,13 +900,15 @@ const f = function f_null1Factory({
 `;
 
 exports[`babel plugin for closure capturing implicitly captures globals with strictGlobal disabled 1`] = `
-"const _worklet_6596166861206_init_data = {
-  code: "(function f_null1(){const{globalStuff}=this.__closure;globalStuff();})",
+"const _worklet_8324040954550_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function f_null1(){var{globalStuff}=this.__closure;globalStuff();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const f = function f_null1Factory({
-  _worklet_6596166861206_init_data,
+  _worklet_8324040954550_init_data,
   globalStuff
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -860,20 +918,22 @@ const f = function f_null1Factory({
   f.__closure = {
     globalStuff
   };
-  f.__workletHash = 6596166861206;
+  f.__workletHash = 8324040954550;
   f.__pluginVersion = "x.y.z";
-  f.__initData = _worklet_6596166861206_init_data;
+  f.__initData = _worklet_8324040954550_init_data;
   f.__stackDetails = _e;
   return f;
 }({
-  _worklet_6596166861206_init_data,
+  _worklet_8324040954550_init_data,
   globalStuff
 });"
 `;
 
 exports[`babel plugin for context objects creates factories 1`] = `
 "const _worklet_3929819179120_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -906,7 +966,9 @@ const foo = {
 
 exports[`babel plugin for context objects preserves bindings 1`] = `
 "const _worklet_13763170431677_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -945,7 +1007,9 @@ const foo = {
 
 exports[`babel plugin for context objects removes marker 1`] = `
 "const _worklet_3929819179120_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -978,7 +1042,9 @@ const foo = {
 
 exports[`babel plugin for context objects workletizes regardless of marker value 1`] = `
 "const _worklet_3929819179120_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1010,64 +1076,70 @@ const foo = {
 `;
 
 exports[`babel plugin for debugging does inject location for worklets in dev builds 1`] = `
-"const _worklet_317748698275_init_data = {
-  code: "(function null1(){const x=1;})",
+"const _worklet_5983340131587_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var x=1;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = useAnimatedStyle(function null1Factory({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }) {
   const _e = [new global.Error(), 1, -27];
   const null1 = function () {
     const x = 1;
   };
   null1.__closure = {};
-  null1.__workletHash = 317748698275;
+  null1.__workletHash = 5983340131587;
   null1.__pluginVersion = "x.y.z";
-  null1.__initData = _worklet_317748698275_init_data;
+  null1.__initData = _worklet_5983340131587_init_data;
   null1.__stackDetails = _e;
   return null1;
 }({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }));"
 `;
 
 exports[`babel plugin for debugging doesn't inject location for worklets in production builds 1`] = `
-"const _worklet_317748698275_init_data = {
-  code: "(function null1(){const x=1;})"
+"const _worklet_5983340131587_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var x=1;})"
+  }
 };
 const foo = useAnimatedStyle(function null1Factory({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }) {
   const null1 = function () {
     const x = 1;
   };
   null1.__closure = {};
-  null1.__workletHash = 317748698275;
-  null1.__initData = _worklet_317748698275_init_data;
+  null1.__workletHash = 5983340131587;
+  null1.__initData = _worklet_5983340131587_init_data;
   return null1;
 }({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }));"
 `;
 
 exports[`babel plugin for debugging doesn't inject version for worklets in production builds 1`] = `
-"const _worklet_317748698275_init_data = {
-  code: "(function null1(){const x=1;})"
+"const _worklet_5983340131587_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var x=1;})"
+  }
 };
 const foo = useAnimatedStyle(function null1Factory({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }) {
   const null1 = function () {
     const x = 1;
   };
   null1.__closure = {};
-  null1.__workletHash = 317748698275;
-  null1.__initData = _worklet_317748698275_init_data;
+  null1.__workletHash = 5983340131587;
+  null1.__initData = _worklet_5983340131587_init_data;
   return null1;
 }({
-  _worklet_317748698275_init_data
+  _worklet_5983340131587_init_data
 }));"
 `;
 
@@ -1081,7 +1153,9 @@ exports[`babel plugin for file workletization doesn't workletize function outsid
 
 exports[`babel plugin for file workletization moves CommonJS export to the bottom of the file 1`] = `
 "const _worklet_7222489488656_init_data = {
-  code: "(function foo_null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1105,7 +1179,9 @@ exports.foo = foo;"
 
 exports[`babel plugin for file workletization moves multiple CommonJS exports to the bottom of the file 1`] = `
 "const _worklet_7222489488656_init_data = {
-  code: "(function foo_null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1124,7 +1200,9 @@ const foo = function foo_null1Factory({
   _worklet_7222489488656_init_data
 });
 const _worklet_6929869424900_init_data = {
-  code: "(function bar_null2(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null2(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1143,7 +1221,9 @@ const bar = function bar_null2Factory({
   _worklet_6929869424900_init_data
 });
 const _worklet_195120228813_init_data = {
-  code: "(function baz_null3(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function baz_null3(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1162,7 +1242,9 @@ const baz = function baz_null3Factory({
   _worklet_195120228813_init_data
 });
 const _worklet_6972205995780_init_data = {
-  code: "(function foobar_null4(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foobar_null4(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1188,7 +1270,9 @@ exports.foobar = foobar;"
 
 exports[`babel plugin for file workletization workletizes ArrowFunctionExpression 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1212,7 +1296,9 @@ const foo = function null1Factory({
 
 exports[`babel plugin for file workletization workletizes ArrowFunctionExpression in default export 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1236,7 +1322,9 @@ export default (function null1Factory({
 
 exports[`babel plugin for file workletization workletizes ArrowFunctionExpression in named export 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1260,32 +1348,44 @@ export const foo = function null1Factory({
 
 exports[`babel plugin for file workletization workletizes ClassDeclaration 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1330,7 +1430,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1341,17 +1441,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1364,17 +1464,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1386,17 +1486,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -1420,13 +1520,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -1437,32 +1537,44 @@ const Clazz = function () {
 
 exports[`babel plugin for file workletization workletizes ClassDeclaration in default export 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1507,7 +1619,7 @@ export default (function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1518,17 +1630,17 @@ export default (function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1541,17 +1653,17 @@ export default (function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1563,17 +1675,17 @@ export default (function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -1597,13 +1709,13 @@ export default (function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -1614,32 +1726,44 @@ export default (function () {
 
 exports[`babel plugin for file workletization workletizes ClassDeclaration in named export 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1684,7 +1808,7 @@ export const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1695,17 +1819,17 @@ export const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1718,17 +1842,17 @@ export const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -1740,17 +1864,17 @@ export const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -1774,13 +1898,13 @@ export const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -1791,7 +1915,9 @@ export const Clazz = function () {
 
 exports[`babel plugin for file workletization workletizes FunctionDeclaration 1`] = `
 "const _worklet_8267719815216_init_data = {
-  code: "(function foo_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1815,7 +1941,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for file workletization workletizes FunctionDeclaration in default export 1`] = `
 "const _worklet_8267719815216_init_data = {
-  code: "(function foo_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1839,7 +1967,9 @@ export default (function foo_null1Factory({
 
 exports[`babel plugin for file workletization workletizes FunctionDeclaration in named export 1`] = `
 "const _worklet_8267719815216_init_data = {
-  code: "(function foo_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1863,7 +1993,9 @@ export const foo = function foo_null1Factory({
 
 exports[`babel plugin for file workletization workletizes FunctionExpression 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1887,7 +2019,9 @@ const foo = function null1Factory({
 
 exports[`babel plugin for file workletization workletizes FunctionExpression in default export 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1911,7 +2045,9 @@ export default (function null1Factory({
 
 exports[`babel plugin for file workletization workletizes FunctionExpression in named export 1`] = `
 "const _worklet_598741038089_init_data = {
-  code: "(function null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1935,7 +2071,9 @@ export const foo = function null1Factory({
 
 exports[`babel plugin for file workletization workletizes ObjectMethod 1`] = `
 "const _worklet_10297630573799_init_data = {
-  code: "(function bar_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1961,7 +2099,9 @@ const foo = {
 
 exports[`babel plugin for file workletization workletizes ObjectMethod in default export 1`] = `
 "const _worklet_10297630573799_init_data = {
-  code: "(function bar_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -1987,7 +2127,9 @@ export default {
 
 exports[`babel plugin for file workletization workletizes ObjectMethod in named export 1`] = `
 "const _worklet_10297630573799_init_data = {
-  code: "(function bar_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2013,7 +2155,9 @@ export const foo = {
 
 exports[`babel plugin for file workletization workletizes assigned FunctionDeclaration 1`] = `
 "const _worklet_8267719815216_init_data = {
-  code: "(function foo_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2037,7 +2181,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for file workletization workletizes implicit WorkletContextObject 1`] = `
 "const _worklet_13763170431677_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2076,7 +2222,9 @@ const foo = {
 
 exports[`babel plugin for file workletization workletizes implicit WorkletContextObject in default export 1`] = `
 "const _worklet_13763170431677_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2115,7 +2263,9 @@ export default {
 
 exports[`babel plugin for file workletization workletizes implicit WorkletContextObject in named export 1`] = `
 "const _worklet_13763170431677_init_data = {
-  code: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{bar:function(){return'bar';},foobar:function(){return this.bar();}};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2154,7 +2304,9 @@ export const foo = {
 
 exports[`babel plugin for file workletization workletizes multiple functions 1`] = `
 "const _worklet_8267719815216_init_data = {
-  code: "(function foo_null1(){return'bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return'bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2175,7 +2327,9 @@ const foo = function foo_null1Factory({
   _worklet_8267719815216_init_data
 });
 const _worklet_6769067074636_init_data = {
-  code: "(function null2(){return'foobar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){return'foobar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2199,7 +2353,9 @@ const bar = function null2Factory({
 
 exports[`babel plugin for function hooks workletizes hook wrapped named FunctionExpression automatically 1`] = `
 "const _worklet_17573641830910_init_data = {
-  code: "(function foo_null1(){return{width:50};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){return{width:50};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2225,7 +2381,9 @@ const animatedStyle = useAnimatedStyle(function foo_null1Factory({
 
 exports[`babel plugin for function hooks workletizes hook wrapped unnamed FunctionExpression automatically 1`] = `
 "const _worklet_12344077285575_init_data = {
-  code: "(function null1(){return{width:50};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{width:50};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2251,7 +2409,9 @@ const animatedStyle = useAnimatedStyle(function null1Factory({
 
 exports[`babel plugin for function hooks workletizes hook wrapped worklet reference automatically 1`] = `
 "const _worklet_16289365939249_init_data = {
-  code: "(function null1(){return{color:'red',backgroundColor:'blue'};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{color:'red',backgroundColor:'blue'};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2279,7 +2439,9 @@ const animatedStyle = useAnimatedStyle(style);"
 
 exports[`babel plugin for generators makes a generator worklet factory 1`] = `
 "const _worklet_6751874160474_init_data = {
-  code: "(function*foo_null1(){yield'hello';yield'world';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function*foo_null1(){yield'hello';yield'world';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2304,7 +2466,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for generators makes a generator worklet string 1`] = `
 "const _worklet_6751874160474_init_data = {
-  code: "(function*foo_null1(){yield'hello';yield'world';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function*foo_null1(){yield'hello';yield'world';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2388,7 +2552,9 @@ exports[`babel plugin for object hooks supports empty object in useAnimatedScrol
 
 exports[`babel plugin for object hooks transforms ArrowFunctionExpression as argument of useAnimatedScrollHandler 1`] = `
 "const _worklet_13398616180494_init_data = {
-  code: "(function null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2412,27 +2578,37 @@ useAnimatedScrollHandler(function null1Factory({
 
 exports[`babel plugin for object hooks transforms each object property in useAnimatedScrollHandler 1`] = `
 "const _worklet_15695285586601_init_data = {
-  code: "(function null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_15793781905194_init_data = {
-  code: "(function null2(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_6645178700715_init_data = {
-  code: "(function null3(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_15833406824748_init_data = {
-  code: "(function null4(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null4(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_6687899605933_init_data = {
-  code: "(function null5(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null5(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2512,7 +2688,9 @@ useAnimatedScrollHandler({
 
 exports[`babel plugin for object hooks transforms named FunctionExpression as argument of useAnimatedScrollHandler 1`] = `
 "const _worklet_3237328317303_init_data = {
-  code: "(function foo_null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2536,7 +2714,9 @@ useAnimatedScrollHandler(function foo_null1Factory({
 
 exports[`babel plugin for object hooks transforms unnamed FunctionExpression as argument of useAnimatedScrollHandler 1`] = `
 "const _worklet_13398616180494_init_data = {
-  code: "(function null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2560,7 +2740,9 @@ useAnimatedScrollHandler(function null1Factory({
 
 exports[`babel plugin for object hooks workletizes useAnimatedScrollHandler wrapped ArrowFunctionExpression automatically 1`] = `
 "const _worklet_13398616180494_init_data = {
-  code: "(function null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2586,7 +2768,9 @@ useAnimatedScrollHandler({
 
 exports[`babel plugin for object hooks workletizes useAnimatedScrollHandler wrapped ObjectMethod automatically 1`] = `
 "const _worklet_16289303987389_init_data = {
-  code: "(function onScroll_null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onScroll_null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2612,7 +2796,9 @@ useAnimatedScrollHandler({
 
 exports[`babel plugin for object hooks workletizes useAnimatedScrollHandler wrapped named FunctionExpression automatically 1`] = `
 "const _worklet_16289303987389_init_data = {
-  code: "(function onScroll_null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onScroll_null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2638,7 +2824,9 @@ useAnimatedScrollHandler({
 
 exports[`babel plugin for object hooks workletizes useAnimatedScrollHandler wrapped unnamed FunctionExpression automatically 1`] = `
 "const _worklet_13398616180494_init_data = {
-  code: "(function null1(event){console.log(event);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(event){console.log(event);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2689,13 +2877,15 @@ exports[`babel plugin for react-native-gesture-handler transforms spread operato
 `;
 
 exports[`babel plugin for react-native-gesture-handler transforms spread operator in worklets for arrays 1`] = `
-"const _worklet_12830172710526_init_data = {
-  code: "(function foo_null1(){const bar=[4,5];const baz=[1,...[2,3],...bar];})",
+"const _worklet_9087420550142_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var bar=[4,5];var baz=[1,...[2,3],...bar];})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_12830172710526_init_data
+  _worklet_9087420550142_init_data
 }) {
   const _e = [new global.Error(), 1, -27];
   const foo = function () {
@@ -2703,19 +2893,21 @@ const foo = function foo_null1Factory({
     const baz = [1, ...[2, 3], ...bar];
   };
   foo.__closure = {};
-  foo.__workletHash = 12830172710526;
+  foo.__workletHash = 9087420550142;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_12830172710526_init_data;
+  foo.__initData = _worklet_9087420550142_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_12830172710526_init_data
+  _worklet_9087420550142_init_data
 });"
 `;
 
 exports[`babel plugin for react-native-gesture-handler transforms spread operator in worklets for function arguments 1`] = `
 "const _worklet_6578320838713_init_data = {
-  code: "(function foo_null1(...args){console.log(args);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(...args){console.log(args);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2739,7 +2931,9 @@ const foo = function foo_null1Factory({
 
 exports[`babel plugin for react-native-gesture-handler transforms spread operator in worklets for function calls 1`] = `
 "const _worklet_12908294140089_init_data = {
-  code: "(function foo_null1(arg){console.log(...arg);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(arg){console.log(...arg);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2762,13 +2956,15 @@ const foo = function foo_null1Factory({
 `;
 
 exports[`babel plugin for react-native-gesture-handler transforms spread operator in worklets for objects 1`] = `
-"const _worklet_15693683824325_init_data = {
-  code: "(function foo_null1(){const bar={d:4,e:5};const baz={a:1,...{b:2,c:3},...bar};})",
+"const _worklet_12967511901317_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var bar={d:4,e:5};var baz={a:1,...{b:2,c:3},...bar};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_15693683824325_init_data
+  _worklet_12967511901317_init_data
 }) {
   const _e = [new global.Error(), 1, -27];
   const foo = function () {
@@ -2786,29 +2982,35 @@ const foo = function foo_null1Factory({
     };
   };
   foo.__closure = {};
-  foo.__workletHash = 15693683824325;
+  foo.__workletHash = 12967511901317;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_15693683824325_init_data;
+  foo.__initData = _worklet_12967511901317_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_15693683824325_init_data
+  _worklet_12967511901317_init_data
 });"
 `;
 
 exports[`babel plugin for react-native-gesture-handler workletizes gesture callbacks using the hooks api 1`] = `
 "const _worklet_7919510602824_init_data = {
-  code: "(function null1(){console.log('onBegin');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('onBegin');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2618650549343_init_data = {
-  code: "(function null2(_event){console.log('onStart');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(_event){console.log('onStart');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_12912670672289_init_data = {
-  code: "(function null3(_event,_success){console.log('onEnd');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(_event,_success){console.log('onEnd');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2867,17 +3069,23 @@ const foo = useTapGesture({
 
 exports[`babel plugin for react-native-gesture-handler workletizes possibly chained gesture object callback functions automatically 1`] = `
 "const _worklet_10655589338787_init_data = {
-  code: "(function null1(_event,_success){console.log('onEnd');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(_event,_success){console.log('onEnd');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2618650549343_init_data = {
-  code: "(function null2(_event){console.log('onStart');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(_event){console.log('onStart');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_4721660611402_init_data = {
-  code: "(function null3(){console.log('onBegin');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(){console.log('onBegin');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2931,7 +3139,9 @@ const foo = Gesture.Tap().numberOfTaps(2).onBegin(function null3Factory({
 
 exports[`babel plugin for react-native-gesture-handler workletizes referenced callbacks 1`] = `
 "const _worklet_15695285586601_init_data = {
-  code: "(function null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2954,7 +3164,9 @@ const foo = Gesture.Tap().onStart(onStart);"
 
 exports[`babel plugin for react-native-gesture-handler workletizes referenced gesture callbacks using the hooks api 1`] = `
 "const _worklet_7919510602824_init_data = {
-  code: "(function null1(){console.log('onBegin');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('onBegin');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -2982,7 +3194,9 @@ const foo = useTapGesture({
 
 exports[`babel plugin for react-native-gesture-handler workletizes referenced gesture callbacks using the hooks api and shorthand syntax 1`] = `
 "const _worklet_7919510602824_init_data = {
-  code: "(function null1(){console.log('onBegin');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('onBegin');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3011,7 +3225,9 @@ const foo = useTapGesture({
 exports[`babel plugin for referenced worklets prefers AssignmentExpression over VariableDeclarator 1`] = `
 "let styleFactory = () => 1;
 const _worklet_8280998122457_init_data = {
-  code: "(function null1(){return'AssignmentExpression';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'AssignmentExpression';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3034,7 +3250,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 
 exports[`babel plugin for referenced worklets prefers FunctionDeclaration over AssignmentExpression 1`] = `
 "const _worklet_3701210124198_init_data = {
-  code: "(function styleFactory_null1(){return'FunctionDeclaration';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function styleFactory_null1(){return'FunctionDeclaration';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3061,7 +3279,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 exports[`babel plugin for referenced worklets workletizes ArrowFunctionExpression on its AssignmentExpression 1`] = `
 "let styleFactory;
 const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3084,7 +3304,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 
 exports[`babel plugin for referenced worklets workletizes ArrowFunctionExpression on its VariableDeclarator 1`] = `
 "const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3109,7 +3331,9 @@ exports[`babel plugin for referenced worklets workletizes ArrowFunctionExpressio
 "let styleFactory;
 styleFactory = () => 1;
 const _worklet_8280998122457_init_data = {
-  code: "(function null1(){return'AssignmentExpression';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'AssignmentExpression';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3132,7 +3356,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 
 exports[`babel plugin for referenced worklets workletizes FunctionDeclaration 1`] = `
 "const _worklet_9076365995074_init_data = {
-  code: "(function styleFactory_null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function styleFactory_null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3158,7 +3384,9 @@ const animatedStyle = useAnimatedStyle(styleFactory);"
 exports[`babel plugin for referenced worklets workletizes FunctionExpression on its AssignmentExpression 1`] = `
 "let styleFactory;
 const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3183,7 +3411,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 
 exports[`babel plugin for referenced worklets workletizes FunctionExpression on its VariableDeclarator 1`] = `
 "const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3212,7 +3442,9 @@ styleFactory = function () {
   return 1;
 };
 const _worklet_8280998122457_init_data = {
-  code: "(function null1(){return'AssignmentExpression';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'AssignmentExpression';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3238,7 +3470,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 exports[`babel plugin for referenced worklets workletizes ObjectExpression on its AssignmentExpression 1`] = `
 "let handler;
 const _worklet_15695285586601_init_data = {
-  code: "(function null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3263,7 +3497,9 @@ const scrollHandler = useAnimatedScrollHandler(handler);"
 
 exports[`babel plugin for referenced worklets workletizes ObjectExpression on its VariableDeclarator 1`] = `
 "const _worklet_15695285586601_init_data = {
-  code: "(function null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3292,7 +3528,9 @@ handler = {
   onScroll: () => 1
 };
 const _worklet_8280998122457_init_data = {
-  code: "(function null1(){return'AssignmentExpression';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'AssignmentExpression';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3319,7 +3557,9 @@ exports[`babel plugin for referenced worklets workletizes assignments that appea
 "let styleFactory = () => ({});
 animatedStyle = useAnimatedStyle(styleFactory);
 const _worklet_13154627498348_init_data = {
-  code: "(function null1(){return'AssignmentAfterUse';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return'AssignmentAfterUse';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3343,7 +3583,9 @@ styleFactory = function null1Factory({
 
 exports[`babel plugin for referenced worklets workletizes in immediate scope 1`] = `
 "const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3366,7 +3608,9 @@ animatedStyle = useAnimatedStyle(styleFactory);"
 
 exports[`babel plugin for referenced worklets workletizes in nested scope 1`] = `
 "const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3393,7 +3637,9 @@ function outerScope() {
 
 exports[`babel plugin for referenced worklets workletizes multiple referencing 1`] = `
 "const _worklet_12404887720670_init_data = {
-  code: "(function null1(){return{};})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return{};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3416,13 +3662,15 @@ const animatedStyle = useAnimatedStyle(firstReference);"
 `;
 
 exports[`babel plugin for referenced worklets workletizes recursion 1`] = `
-"const _worklet_8174903816409_init_data = {
-  code: "(function recursiveWorklet_null1(){const recursiveWorklet_null1=this._recur;const{runOnUI}=this.__closure;if(!globalThis._WORKLET){runOnUI(recursiveWorklet_null1)();}})",
+"const _worklet_6623172457369_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function recursiveWorklet_null1(){var recursiveWorklet_null1=this._recur;var{runOnUI}=this.__closure;if(!globalThis._WORKLET){runOnUI(recursiveWorklet_null1)();}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const recursiveWorklet = function recursiveWorklet_null1Factory({
-  _worklet_8174903816409_init_data,
+  _worklet_6623172457369_init_data,
   runOnUI
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -3434,13 +3682,13 @@ const recursiveWorklet = function recursiveWorklet_null1Factory({
   recursiveWorklet.__closure = {
     runOnUI
   };
-  recursiveWorklet.__workletHash = 8174903816409;
+  recursiveWorklet.__workletHash = 6623172457369;
   recursiveWorklet.__pluginVersion = "x.y.z";
-  recursiveWorklet.__initData = _worklet_8174903816409_init_data;
+  recursiveWorklet.__initData = _worklet_6623172457369_init_data;
   recursiveWorklet.__stackDetails = _e;
   return recursiveWorklet;
 }({
-  _worklet_8174903816409_init_data,
+  _worklet_6623172457369_init_data,
   runOnUI
 });"
 `;
@@ -3455,7 +3703,9 @@ exports[`babel plugin for sequence expressions supports SequenceExpression 1`] =
 
 exports[`babel plugin for sequence expressions supports SequenceExpression, many arguments 1`] = `
 "const _worklet_12447993019415_init_data = {
-  code: "(function onStart_null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onStart_null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3481,7 +3731,9 @@ function App() {
 
 exports[`babel plugin for sequence expressions supports SequenceExpression, with objectHook 1`] = `
 "const _worklet_15101577807674_init_data = {
-  code: "(function onScroll_null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onScroll_null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3507,7 +3759,9 @@ function App() {
 
 exports[`babel plugin for sequence expressions supports SequenceExpression, with worklet 1`] = `
 "const _worklet_12447993019415_init_data = {
-  code: "(function onStart_null1(){})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onStart_null1(){})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3532,8 +3786,10 @@ function App() {
 `;
 
 exports[`babel plugin for sequence expressions supports SequenceExpression, with worklet closure 1`] = `
-"const _worklet_12891541337286_init_data = {
-  code: "(function onStart_null1(){const{obj}=this.__closure;const a=obj.a;})",
+"const _worklet_654137887430_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function onStart_null1(){var{obj}=this.__closure;var a=obj.a;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3544,7 +3800,7 @@ function App() {
   };
   (0, fun)({
     onStart: function onStart_null1Factory({
-      _worklet_12891541337286_init_data,
+      _worklet_654137887430_init_data,
       obj
     }) {
       const _e = [new global.Error(), -2, -27];
@@ -3554,13 +3810,13 @@ function App() {
       onStart.__closure = {
         obj
       };
-      onStart.__workletHash = 12891541337286;
+      onStart.__workletHash = 654137887430;
       onStart.__pluginVersion = "x.y.z";
-      onStart.__initData = _worklet_12891541337286_init_data;
+      onStart.__initData = _worklet_654137887430_init_data;
       onStart.__stackDetails = _e;
       return onStart;
     }({
-      _worklet_12891541337286_init_data,
+      _worklet_654137887430_init_data,
       obj
     })
   }, []);
@@ -3568,13 +3824,15 @@ function App() {
 `;
 
 exports[`babel plugin for web configuration doesn't substitute isWeb and shouldBeUseWeb in worklets 1`] = `
-"const _worklet_6025589628865_init_data = {
-  code: "(function foo_null1(){const{isWeb,shouldBeUseWeb}=this.__closure;const x=isWeb();const y=shouldBeUseWeb();})",
+"const _worklet_16283487982369_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var{isWeb,shouldBeUseWeb}=this.__closure;var x=isWeb();var y=shouldBeUseWeb();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_6025589628865_init_data,
+  _worklet_16283487982369_init_data,
   isWeb,
   shouldBeUseWeb
 }) {
@@ -3587,13 +3845,13 @@ const foo = function foo_null1Factory({
     isWeb,
     shouldBeUseWeb
   };
-  foo.__workletHash = 6025589628865;
+  foo.__workletHash = 16283487982369;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_6025589628865_init_data;
+  foo.__initData = _worklet_16283487982369_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_6025589628865_init_data,
+  _worklet_16283487982369_init_data,
   isWeb,
   shouldBeUseWeb
 });"
@@ -3611,7 +3869,9 @@ const y = shouldBeUseWeb();"
 
 exports[`babel plugin for web configuration includes initData when omitNativeOnlyData option is set to false 1`] = `
 "const _worklet_2747953837011_init_data = {
-  code: "(function foo_null1(){var bar='bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var bar='bar';})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3654,32 +3914,44 @@ const y = true;"
 
 exports[`babel plugin for worklet classes appends polyfills 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3724,7 +3996,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3735,17 +4007,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3758,17 +4030,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3780,17 +4052,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -3814,13 +4086,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -3831,32 +4103,44 @@ const Clazz = function () {
 
 exports[`babel plugin for worklet classes creates factories 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -3901,7 +4185,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3912,17 +4196,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3935,17 +4219,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -3957,17 +4241,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -3991,13 +4275,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -4007,13 +4291,15 @@ const Clazz = function () {
 `;
 
 exports[`babel plugin for worklet classes injects class factory into worklets 1`] = `
-"const _worklet_17269864397438_init_data = {
-  code: "(function foo_null1(){const{Clazz__classFactory}=this.__closure;const Clazz=Clazz__classFactory();const clazz=new Clazz();})",
+"const _worklet_10093635163678_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var{Clazz__classFactory}=this.__closure;var Clazz=Clazz__classFactory();var clazz=new Clazz();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_17269864397438_init_data,
+  _worklet_10093635163678_init_data,
   Clazz
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -4023,13 +4309,13 @@ const foo = function foo_null1Factory({
   foo.__closure = {
     Clazz__classFactory: Clazz.Clazz__classFactory
   };
-  foo.__workletHash = 17269864397438;
+  foo.__workletHash = 10093635163678;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_17269864397438_init_data;
+  foo.__initData = _worklet_10093635163678_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_17269864397438_init_data,
+  _worklet_10093635163678_init_data,
   Clazz
 });"
 `;
@@ -4038,13 +4324,15 @@ exports[`babel plugin for worklet classes is disabled via option 1`] = `
 "function foo() {
   this.prop = 42;
 }
-const _worklet_206127167852_init_data = {
-  code: "(function bar_null1(){const{foo}=this.__closure;const instance=new foo();})",
+const _worklet_16007756767020_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function bar_null1(){var{foo}=this.__closure;var instance=new foo();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const bar = function bar_null1Factory({
-  _worklet_206127167852_init_data,
+  _worklet_16007756767020_init_data,
   foo
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -4054,50 +4342,64 @@ const bar = function bar_null1Factory({
   bar.__closure = {
     foo
   };
-  bar.__workletHash = 206127167852;
+  bar.__workletHash = 16007756767020;
   bar.__pluginVersion = "x.y.z";
-  bar.__initData = _worklet_206127167852_init_data;
+  bar.__initData = _worklet_16007756767020_init_data;
   bar.__stackDetails = _e;
   return bar;
 }({
-  _worklet_206127167852_init_data,
+  _worklet_16007756767020_init_data,
   foo
 });"
 `;
 
 exports[`babel plugin for worklet classes keeps this binding 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_14490328793273_init_data = {
-  code: "(function _defineProperty_null6(e,r,t){const{_toPropertyKey}=this.__closure;return(r=_toPropertyKey(r))in e?Object.defineProperty(e,r,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[r]=t,e;})",
+const _worklet_10431429368985_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperty_null6(e,r,t){var{_toPropertyKey}=this.__closure;return(r=_toPropertyKey(r))in e?Object.defineProperty(e,r,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[r]=t,e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_11604519449277_init_data = {
-  code: "(function Clazz__classFactory_null7(){const Clazz__classFactory_null7=this._recur;const{_classCallCheck,_defineProperty,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);_defineProperty(this,\\"member\\",1);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return this.member;}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null7;return Clazz;})",
+const _worklet_17219502839453_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null7(){var Clazz__classFactory_null7=this._recur;var{_classCallCheck,_defineProperty,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);_defineProperty(this,\\"member\\",1);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return this.member;}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null7;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4142,7 +4444,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4153,17 +4455,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4176,17 +4478,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4198,17 +4500,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const _defineProperty = function _defineProperty_null6Factory({
-    _worklet_14490328793273_init_data,
+    _worklet_10431429368985_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4223,17 +4525,17 @@ const Clazz = function () {
     _defineProperty.__closure = {
       _toPropertyKey
     };
-    _defineProperty.__workletHash = 14490328793273;
+    _defineProperty.__workletHash = 10431429368985;
     _defineProperty.__pluginVersion = "x.y.z";
-    _defineProperty.__initData = _worklet_14490328793273_init_data;
+    _defineProperty.__initData = _worklet_10431429368985_init_data;
     _defineProperty.__stackDetails = _e;
     return _defineProperty;
   }({
-    _worklet_14490328793273_init_data,
+    _worklet_10431429368985_init_data,
     _toPropertyKey
   });
   const Clazz__classFactory = function Clazz__classFactory_null7Factory({
-    _worklet_11604519449277_init_data,
+    _worklet_17219502839453_init_data,
     _classCallCheck,
     _defineProperty,
     _createClass
@@ -4260,13 +4562,13 @@ const Clazz = function () {
       _defineProperty,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 11604519449277;
+    Clazz__classFactory.__workletHash = 17219502839453;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_11604519449277_init_data;
+    Clazz__classFactory.__initData = _worklet_17219502839453_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_11604519449277_init_data,
+    _worklet_17219502839453_init_data,
     _classCallCheck,
     _defineProperty,
     _createClass
@@ -4277,13 +4579,15 @@ const Clazz = function () {
 `;
 
 exports[`babel plugin for worklet classes modifies closures 1`] = `
-"const _worklet_17269864397438_init_data = {
-  code: "(function foo_null1(){const{Clazz__classFactory}=this.__closure;const Clazz=Clazz__classFactory();const clazz=new Clazz();})",
+"const _worklet_10093635163678_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var{Clazz__classFactory}=this.__closure;var Clazz=Clazz__classFactory();var clazz=new Clazz();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_17269864397438_init_data,
+  _worklet_10093635163678_init_data,
   Clazz
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -4293,45 +4597,57 @@ const foo = function foo_null1Factory({
   foo.__closure = {
     Clazz__classFactory: Clazz.Clazz__classFactory
   };
-  foo.__workletHash = 17269864397438;
+  foo.__workletHash = 10093635163678;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_17269864397438_init_data;
+  foo.__initData = _worklet_10093635163678_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_17269864397438_init_data,
+  _worklet_10093635163678_init_data,
   Clazz
 });"
 `;
 
 exports[`babel plugin for worklet classes removes marker 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4376,7 +4692,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4387,17 +4703,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4410,17 +4726,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4432,17 +4748,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -4466,13 +4782,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -4483,32 +4799,44 @@ const Clazz = function () {
 
 exports[`babel plugin for worklet classes workletizes polyfills 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4553,7 +4881,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4564,17 +4892,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4587,17 +4915,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4609,17 +4937,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -4643,13 +4971,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -4660,32 +4988,44 @@ const Clazz = function () {
 
 exports[`babel plugin for worklet classes workletizes regardless of marker value 1`] = `
 "const _worklet_15868919720148_init_data = {
-  code: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _classCallCheck_null1(a,n){if(!(a instanceof n))throw new TypeError(\\"Cannot call a class as a function\\");})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_2252488982580_init_data = {
-  code: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPrimitive_null2(t,r){if(\\"object\\"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var i=e.call(t,r||\\"default\\");if(\\"object\\"!=typeof i)return i;throw new TypeError(\\"@@toPrimitive must return a primitive value.\\");}return(\\"string\\"===r?String:Number)(t);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_3965092496943_init_data = {
-  code: "(function _toPropertyKey_null3(t){const{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})",
+const _worklet_11513851200079_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _toPropertyKey_null3(t){var{_toPrimitive}=this.__closure;var i=_toPrimitive(t,\\"string\\");return\\"symbol\\"==typeof i?i:i+\\"\\";})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_6010199818103_init_data = {
-  code: "(function _defineProperties_null4(e,r){const{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})",
+const _worklet_4254871292887_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _defineProperties_null4(e,r){var{_toPropertyKey}=this.__closure;for(var t=0;t<r.length;t++){var o=r[t];o.enumerable=o.enumerable||!1,o.configurable=!0,\\"value\\"in o&&(o.writable=!0),Object.defineProperty(e,_toPropertyKey(o.key),o);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_12220641603510_init_data = {
-  code: "(function _createClass_null5(e,r,t){const{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})",
+const _worklet_4514740918742_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function _createClass_null5(e,r,t){var{_defineProperties}=this.__closure;return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),Object.defineProperty(e,\\"prototype\\",{writable:!1}),e;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_163643135588_init_data = {
-  code: "(function Clazz__classFactory_null6(){const Clazz__classFactory_null6=this._recur;const{_classCallCheck,_createClass}=this.__closure;const Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})",
+const _worklet_11437179005444_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function Clazz__classFactory_null6(){var Clazz__classFactory_null6=this._recur;var{_classCallCheck,_createClass}=this.__closure;var Clazz=function(){function Clazz(){_classCallCheck(this,Clazz);}return _createClass(Clazz,[{key:\\"foo\\",value:function foo(){return'bar';}}]);}();Clazz.Clazz__classFactory=Clazz__classFactory_null6;return Clazz;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4730,7 +5070,7 @@ const Clazz = function () {
     _worklet_2252488982580_init_data
   });
   const _toPropertyKey = function _toPropertyKey_null3Factory({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4741,17 +5081,17 @@ const Clazz = function () {
     _toPropertyKey.__closure = {
       _toPrimitive
     };
-    _toPropertyKey.__workletHash = 3965092496943;
+    _toPropertyKey.__workletHash = 11513851200079;
     _toPropertyKey.__pluginVersion = "x.y.z";
-    _toPropertyKey.__initData = _worklet_3965092496943_init_data;
+    _toPropertyKey.__initData = _worklet_11513851200079_init_data;
     _toPropertyKey.__stackDetails = _e;
     return _toPropertyKey;
   }({
-    _worklet_3965092496943_init_data,
+    _worklet_11513851200079_init_data,
     _toPrimitive
   });
   const _defineProperties = function _defineProperties_null4Factory({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4764,17 +5104,17 @@ const Clazz = function () {
     _defineProperties.__closure = {
       _toPropertyKey
     };
-    _defineProperties.__workletHash = 6010199818103;
+    _defineProperties.__workletHash = 4254871292887;
     _defineProperties.__pluginVersion = "x.y.z";
-    _defineProperties.__initData = _worklet_6010199818103_init_data;
+    _defineProperties.__initData = _worklet_4254871292887_init_data;
     _defineProperties.__stackDetails = _e;
     return _defineProperties;
   }({
-    _worklet_6010199818103_init_data,
+    _worklet_4254871292887_init_data,
     _toPropertyKey
   });
   const _createClass = function _createClass_null5Factory({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -4786,17 +5126,17 @@ const Clazz = function () {
     _createClass.__closure = {
       _defineProperties
     };
-    _createClass.__workletHash = 12220641603510;
+    _createClass.__workletHash = 4514740918742;
     _createClass.__pluginVersion = "x.y.z";
-    _createClass.__initData = _worklet_12220641603510_init_data;
+    _createClass.__initData = _worklet_4514740918742_init_data;
     _createClass.__stackDetails = _e;
     return _createClass;
   }({
-    _worklet_12220641603510_init_data,
+    _worklet_4514740918742_init_data,
     _defineProperties
   });
   const Clazz__classFactory = function Clazz__classFactory_null6Factory({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   }) {
@@ -4820,13 +5160,13 @@ const Clazz = function () {
       _classCallCheck,
       _createClass
     };
-    Clazz__classFactory.__workletHash = 163643135588;
+    Clazz__classFactory.__workletHash = 11437179005444;
     Clazz__classFactory.__pluginVersion = "x.y.z";
-    Clazz__classFactory.__initData = _worklet_163643135588_init_data;
+    Clazz__classFactory.__initData = _worklet_11437179005444_init_data;
     Clazz__classFactory.__stackDetails = _e;
     return Clazz__classFactory;
   }({
-    _worklet_163643135588_init_data,
+    _worklet_11437179005444_init_data,
     _classCallCheck,
     _createClass
   });
@@ -4837,7 +5177,9 @@ const Clazz = function () {
 
 exports[`babel plugin for worklet names appends file name to function name 1`] = `
 "const _worklet_13429356329999_init_data = {
-  code: "(function foo_sourceJs1(){return 1;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_sourceJs1(){return 1;})"
+  },
   location: "/source.js"
 };
 const foo = function foo_sourceJs1Factory({
@@ -4860,7 +5202,9 @@ const foo = function foo_sourceJs1Factory({
 
 exports[`babel plugin for worklet names appends library name to function name 1`] = `
 "const _worklet_17546537132335_init_data = {
-  code: "(function foo_library_sourceJs1(){return 1;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_library_sourceJs1(){return 1;})"
+  },
   location: "/node_modules/library/source.js"
 };
 const foo = function foo_library_sourceJs1Factory({
@@ -4883,7 +5227,9 @@ const foo = function foo_library_sourceJs1Factory({
 
 exports[`babel plugin for worklet names handles names with illegal characters 1`] = `
 "const _worklet_16707951948783_init_data = {
-  code: "(function foo_SourceJs1(){return 1;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_SourceJs1(){return 1;})"
+  },
   location: "/-source.js"
 };
 const foo = function foo_SourceJs1Factory({
@@ -4905,32 +5251,36 @@ const foo = function foo_SourceJs1Factory({
 `;
 
 exports[`babel plugin for worklet names preserves recursion 1`] = `
-"const _worklet_8592789870364_init_data = {
-  code: "(function foo_null1(){const foo_null1=this._recur;foo_null1(1);})",
+"const _worklet_15778984721980_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(){var foo_null1=this._recur;foo_null1(1);})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_8592789870364_init_data
+  _worklet_15778984721980_init_data
 }) {
   const _e = [new global.Error(), 1, -27];
   const foo = function () {
     foo(1);
   };
   foo.__closure = {};
-  foo.__workletHash = 8592789870364;
+  foo.__workletHash = 15778984721980;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_8592789870364_init_data;
+  foo.__initData = _worklet_15778984721980_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_8592789870364_init_data
+  _worklet_15778984721980_init_data
 });"
 `;
 
 exports[`babel plugin for worklet names unnamed ArrowFunctionExpression 1`] = `
 "const _worklet_16463388434953_init_data = {
-  code: "(function null1(){return 1;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return 1;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4954,7 +5304,9 @@ exports[`babel plugin for worklet names unnamed ArrowFunctionExpression 1`] = `
 
 exports[`babel plugin for worklet names unnamed FunctionExpression 1`] = `
 "const _worklet_16463388434953_init_data = {
-  code: "(function null1(){return 1;})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){return 1;})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
@@ -4978,17 +5330,21 @@ exports[`babel plugin for worklet names unnamed FunctionExpression 1`] = `
 
 exports[`babel plugin for worklet nesting transpiles nested worklets 1`] = `
 "const _worklet_15547305016511_init_data = {
-  code: "(function null1(){console.log('bar');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('bar');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_2134086209467_init_data = {
-  code: "(function null2(){const{_worklet_15547305016511_init_data}=this.__closure;const bar=function null1Factory({_worklet_15547305016511_init_data:_worklet_15547305016511_init_data}){const _e=[new global.Error(),1,-27];const null1=function(){console.log('bar');};null1.__closure={};null1.__workletHash=15547305016511;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_15547305016511_init_data;null1.__stackDetails=_e;return null1;}({_worklet_15547305016511_init_data:_worklet_15547305016511_init_data});bar();})",
+const _worklet_1861034149691_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){var{_worklet_15547305016511_init_data}=this.__closure;var bar=function null1Factory({_worklet_15547305016511_init_data:_worklet_15547305016511_init_data}){var _e=[new global.Error(),1,-27];var null1=function(){console.log('bar');};null1.__closure={};null1.__workletHash=15547305016511;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_15547305016511_init_data;null1.__stackDetails=_e;return null1;}({_worklet_15547305016511_init_data:_worklet_15547305016511_init_data});bar();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function null2Factory({
-  _worklet_2134086209467_init_data,
+  _worklet_1861034149691_init_data,
   _worklet_15547305016511_init_data
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -5014,30 +5370,34 @@ const foo = function null2Factory({
   null2.__closure = {
     _worklet_15547305016511_init_data
   };
-  null2.__workletHash = 2134086209467;
+  null2.__workletHash = 1861034149691;
   null2.__pluginVersion = "x.y.z";
-  null2.__initData = _worklet_2134086209467_init_data;
+  null2.__initData = _worklet_1861034149691_init_data;
   null2.__stackDetails = _e;
   return null2;
 }({
-  _worklet_2134086209467_init_data,
+  _worklet_1861034149691_init_data,
   _worklet_15547305016511_init_data
 });"
 `;
 
 exports[`babel plugin for worklet nesting transpiles nested worklets embedded in runOnJS in runOnUI 1`] = `
 "const _worklet_11239746781805_init_data = {
-  code: "(function null1(){console.log('Hello from JS thread');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('Hello from JS thread');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_1913796782382_init_data = {
-  code: "(function null2(){const{runOnJS,_worklet_11239746781805_init_data}=this.__closure;console.log('Hello from UI thread');runOnJS(function null1Factory({_worklet_11239746781805_init_data:_worklet_11239746781805_init_data}){const _e=[new global.Error(),1,-27];const null1=function(){console.log('Hello from JS thread');};null1.__closure={};null1.__workletHash=11239746781805;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_11239746781805_init_data;null1.__stackDetails=_e;return null1;}({_worklet_11239746781805_init_data:_worklet_11239746781805_init_data}))();})",
+const _worklet_12732971191502_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){var{runOnJS,_worklet_11239746781805_init_data}=this.__closure;console.log('Hello from UI thread');runOnJS(function null1Factory({_worklet_11239746781805_init_data:_worklet_11239746781805_init_data}){var _e=[new global.Error(),1,-27];var null1=function(){console.log('Hello from JS thread');};null1.__closure={};null1.__workletHash=11239746781805;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_11239746781805_init_data;null1.__stackDetails=_e;return null1;}({_worklet_11239746781805_init_data:_worklet_11239746781805_init_data}))();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 runOnUI(function null2Factory({
-  _worklet_1913796782382_init_data,
+  _worklet_12732971191502_init_data,
   runOnJS,
   _worklet_11239746781805_init_data
 }) {
@@ -5065,45 +5425,51 @@ runOnUI(function null2Factory({
     runOnJS,
     _worklet_11239746781805_init_data
   };
-  null2.__workletHash = 1913796782382;
+  null2.__workletHash = 12732971191502;
   null2.__pluginVersion = "x.y.z";
-  null2.__initData = _worklet_1913796782382_init_data;
+  null2.__initData = _worklet_12732971191502_init_data;
   null2.__stackDetails = _e;
   return null2;
 }({
-  _worklet_1913796782382_init_data,
+  _worklet_12732971191502_init_data,
   runOnJS,
   _worklet_11239746781805_init_data
 }))();"
 `;
 
 exports[`babel plugin for worklet nesting transpiles nested worklets embedded in runOnUI in runOnJS in runOnUI 1`] = `
-"const _worklet_176735278478_init_data = {
-  code: "(function null1(){const{runOnUI}=this.__closure;console.log('Hello from JS thread');runOnUI(function(){console.log('Hello from UI thread again');})();})",
+"const _worklet_2607598754094_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var{runOnUI}=this.__closure;console.log('Hello from JS thread');runOnUI(function(){console.log('Hello from UI thread again');})();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_10591487476480_init_data = {
-  code: "(function null2(){const{runOnJS,_worklet_176735278478_init_data,runOnUI}=this.__closure;console.log('Hello from UI thread');runOnJS(function null1Factory({_worklet_176735278478_init_data:_worklet_176735278478_init_data,runOnUI:runOnUI}){const _e=[new global.Error(),-2,-27];const null1=function(){console.log('Hello from JS thread');runOnUI(function(){console.log('Hello from UI thread again');})();};null1.__closure={runOnUI:runOnUI};null1.__workletHash=176735278478;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_176735278478_init_data;null1.__stackDetails=_e;return null1;}({_worklet_176735278478_init_data:_worklet_176735278478_init_data,runOnUI:runOnUI}))();})",
+const _worklet_447842522747_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){var{runOnJS,_worklet_2607598754094_init_data,runOnUI}=this.__closure;console.log('Hello from UI thread');runOnJS(function null1Factory({_worklet_2607598754094_init_data:_worklet_2607598754094_init_data,runOnUI:runOnUI}){var _e=[new global.Error(),-2,-27];var null1=function(){console.log('Hello from JS thread');runOnUI(function(){console.log('Hello from UI thread again');})();};null1.__closure={runOnUI:runOnUI};null1.__workletHash=2607598754094;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_2607598754094_init_data;null1.__stackDetails=_e;return null1;}({_worklet_2607598754094_init_data:_worklet_2607598754094_init_data,runOnUI:runOnUI}))();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_5290472740522_init_data = {
-  code: "(function null3(){console.log('Hello from UI thread again');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(){console.log('Hello from UI thread again');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 runOnUI(function null2Factory({
-  _worklet_10591487476480_init_data,
+  _worklet_447842522747_init_data,
   runOnJS,
-  _worklet_176735278478_init_data,
+  _worklet_2607598754094_init_data,
   runOnUI
 }) {
   const _e = [new global.Error(), -4, -27];
   const null2 = function () {
     console.log('Hello from UI thread');
     runOnJS(function null1Factory({
-      _worklet_176735278478_init_data,
+      _worklet_2607598754094_init_data,
       runOnUI
     }) {
       const _e = [new global.Error(), -2, -27];
@@ -5129,59 +5495,65 @@ runOnUI(function null2Factory({
       null1.__closure = {
         runOnUI
       };
-      null1.__workletHash = 176735278478;
+      null1.__workletHash = 2607598754094;
       null1.__pluginVersion = "x.y.z";
-      null1.__initData = _worklet_176735278478_init_data;
+      null1.__initData = _worklet_2607598754094_init_data;
       null1.__stackDetails = _e;
       return null1;
     }({
-      _worklet_176735278478_init_data,
+      _worklet_2607598754094_init_data,
       runOnUI
     }))();
   };
   null2.__closure = {
     runOnJS,
-    _worklet_176735278478_init_data,
+    _worklet_2607598754094_init_data,
     runOnUI
   };
-  null2.__workletHash = 10591487476480;
+  null2.__workletHash = 447842522747;
   null2.__pluginVersion = "x.y.z";
-  null2.__initData = _worklet_10591487476480_init_data;
+  null2.__initData = _worklet_447842522747_init_data;
   null2.__stackDetails = _e;
   return null2;
 }({
-  _worklet_10591487476480_init_data,
+  _worklet_447842522747_init_data,
   runOnJS,
-  _worklet_176735278478_init_data,
+  _worklet_2607598754094_init_data,
   runOnUI
 }))();"
 `;
 
 exports[`babel plugin for worklet nesting transpiles nested worklets with depth 3 1`] = `
 "const _worklet_7394546508057_init_data = {
-  code: "(function null1(){console.log('foobar');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('foobar');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_418382687015_init_data = {
-  code: "(function null2(){const{_worklet_7394546508057_init_data}=this.__closure;const foobar=function null1Factory({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){const _e=[new global.Error(),1,-27];const null1=function(){console.log('foobar');};null1.__closure={};null1.__workletHash=7394546508057;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_7394546508057_init_data;null1.__stackDetails=_e;return null1;}({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});})",
+const _worklet_10696680003367_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){var{_worklet_7394546508057_init_data}=this.__closure;var foobar=function null1Factory({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){var _e=[new global.Error(),1,-27];var null1=function(){console.log('foobar');};null1.__closure={};null1.__workletHash=7394546508057;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_7394546508057_init_data;null1.__stackDetails=_e;return null1;}({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_10944879085802_init_data = {
-  code: "(function null3(){const{_worklet_418382687015_init_data,_worklet_7394546508057_init_data}=this.__closure;const bar=function null2Factory({_worklet_418382687015_init_data:_worklet_418382687015_init_data,_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){const _e=[new global.Error(),-2,-27];const null2=function(){const foobar=function null1Factory({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){const _e=[new global.Error(),1,-27];const null1=function(){console.log('foobar');};null1.__closure={};null1.__workletHash=7394546508057;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_7394546508057_init_data;null1.__stackDetails=_e;return null1;}({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});};null2.__closure={_worklet_7394546508057_init_data:_worklet_7394546508057_init_data};null2.__workletHash=418382687015;null2.__pluginVersion=\\"x.y.z\\";null2.__initData=_worklet_418382687015_init_data;null2.__stackDetails=_e;return null2;}({_worklet_418382687015_init_data:_worklet_418382687015_init_data,_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});bar();})",
+const _worklet_1417860183108_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(){var{_worklet_10696680003367_init_data,_worklet_7394546508057_init_data}=this.__closure;var bar=function null2Factory({_worklet_10696680003367_init_data:_worklet_10696680003367_init_data,_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){var _e=[new global.Error(),-2,-27];var null2=function(){var foobar=function null1Factory({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data}){var _e=[new global.Error(),1,-27];var null1=function(){console.log('foobar');};null1.__closure={};null1.__workletHash=7394546508057;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_7394546508057_init_data;null1.__stackDetails=_e;return null1;}({_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});};null2.__closure={_worklet_7394546508057_init_data:_worklet_7394546508057_init_data};null2.__workletHash=10696680003367;null2.__pluginVersion=\\"x.y.z\\";null2.__initData=_worklet_10696680003367_init_data;null2.__stackDetails=_e;return null2;}({_worklet_10696680003367_init_data:_worklet_10696680003367_init_data,_worklet_7394546508057_init_data:_worklet_7394546508057_init_data});bar();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function null3Factory({
-  _worklet_10944879085802_init_data,
-  _worklet_418382687015_init_data,
+  _worklet_1417860183108_init_data,
+  _worklet_10696680003367_init_data,
   _worklet_7394546508057_init_data
 }) {
   const _e = [new global.Error(), -3, -27];
   const null3 = function () {
     const bar = function null2Factory({
-      _worklet_418382687015_init_data,
+      _worklet_10696680003367_init_data,
       _worklet_7394546508057_init_data
     }) {
       const _e = [new global.Error(), -2, -27];
@@ -5206,51 +5578,57 @@ const foo = function null3Factory({
       null2.__closure = {
         _worklet_7394546508057_init_data
       };
-      null2.__workletHash = 418382687015;
+      null2.__workletHash = 10696680003367;
       null2.__pluginVersion = "x.y.z";
-      null2.__initData = _worklet_418382687015_init_data;
+      null2.__initData = _worklet_10696680003367_init_data;
       null2.__stackDetails = _e;
       return null2;
     }({
-      _worklet_418382687015_init_data,
+      _worklet_10696680003367_init_data,
       _worklet_7394546508057_init_data
     });
     bar();
   };
   null3.__closure = {
-    _worklet_418382687015_init_data,
+    _worklet_10696680003367_init_data,
     _worklet_7394546508057_init_data
   };
-  null3.__workletHash = 10944879085802;
+  null3.__workletHash = 1417860183108;
   null3.__pluginVersion = "x.y.z";
-  null3.__initData = _worklet_10944879085802_init_data;
+  null3.__initData = _worklet_1417860183108_init_data;
   null3.__stackDetails = _e;
   return null3;
 }({
-  _worklet_10944879085802_init_data,
-  _worklet_418382687015_init_data,
+  _worklet_1417860183108_init_data,
+  _worklet_10696680003367_init_data,
   _worklet_7394546508057_init_data
 });"
 `;
 
 exports[`babel plugin for worklet nesting transpiles worklets with functions defined on UI thread to run them on JS 1`] = `
 "const _worklet_10798770476691_init_data = {
-  code: "(function null1(){console.log('Good morning from JS thread!');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){console.log('Good morning from JS thread!');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const _worklet_9016903891659_init_data = {
-  code: "(function null2(){console.log('Good afternoon from JS thread');})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null2(){console.log('Good afternoon from JS thread');})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
-const _worklet_8358853488176_init_data = {
-  code: "(function null3(){const{_worklet_10798770476691_init_data,_worklet_9016903891659_init_data,runOnJS}=this.__closure;const a=function null1Factory({_worklet_10798770476691_init_data:_worklet_10798770476691_init_data}){const _e=[new global.Error(),1,-27];const null1=function(){console.log('Good morning from JS thread!');};null1.__closure={};null1.__workletHash=10798770476691;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_10798770476691_init_data;null1.__stackDetails=_e;return null1;}({_worklet_10798770476691_init_data:_worklet_10798770476691_init_data});const b=function null2Factory({_worklet_9016903891659_init_data:_worklet_9016903891659_init_data}){const _e=[new global.Error(),1,-27];const null2=function(){console.log('Good afternoon from JS thread');};null2.__closure={};null2.__workletHash=9016903891659;null2.__pluginVersion=\\"x.y.z\\";null2.__initData=_worklet_9016903891659_init_data;null2.__stackDetails=_e;return null2;}({_worklet_9016903891659_init_data:_worklet_9016903891659_init_data});const func=Math.random()<0.5?a:b;runOnJS(func)();})",
+const _worklet_7872489268016_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null3(){var{_worklet_10798770476691_init_data,_worklet_9016903891659_init_data,runOnJS}=this.__closure;var a=function null1Factory({_worklet_10798770476691_init_data:_worklet_10798770476691_init_data}){var _e=[new global.Error(),1,-27];var null1=function(){console.log('Good morning from JS thread!');};null1.__closure={};null1.__workletHash=10798770476691;null1.__pluginVersion=\\"x.y.z\\";null1.__initData=_worklet_10798770476691_init_data;null1.__stackDetails=_e;return null1;}({_worklet_10798770476691_init_data:_worklet_10798770476691_init_data});var b=function null2Factory({_worklet_9016903891659_init_data:_worklet_9016903891659_init_data}){var _e=[new global.Error(),1,-27];var null2=function(){console.log('Good afternoon from JS thread');};null2.__closure={};null2.__workletHash=9016903891659;null2.__pluginVersion=\\"x.y.z\\";null2.__initData=_worklet_9016903891659_init_data;null2.__stackDetails=_e;return null2;}({_worklet_9016903891659_init_data:_worklet_9016903891659_init_data});var func=Math.random()<0.5?a:b;runOnJS(func)();})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 runOnUI(function null3Factory({
-  _worklet_8358853488176_init_data,
+  _worklet_7872489268016_init_data,
   _worklet_10798770476691_init_data,
   _worklet_9016903891659_init_data,
   runOnJS
@@ -5297,13 +5675,13 @@ runOnUI(function null3Factory({
     _worklet_9016903891659_init_data,
     runOnJS
   };
-  null3.__workletHash = 8358853488176;
+  null3.__workletHash = 7872489268016;
   null3.__pluginVersion = "x.y.z";
-  null3.__initData = _worklet_8358853488176_init_data;
+  null3.__initData = _worklet_7872489268016_init_data;
   null3.__stackDetails = _e;
   return null3;
 }({
-  _worklet_8358853488176_init_data,
+  _worklet_7872489268016_init_data,
   _worklet_10798770476691_init_data,
   _worklet_9016903891659_init_data,
   runOnJS
@@ -5312,7 +5690,9 @@ runOnUI(function null3Factory({
 
 exports[`babel plugin generally strips queries from filename when injecting source maps 1`] = `
 "const _worklet_11232621911025_init_data = {
-  code: "(function foo_nullQuery1(){var foo_nullQuery1='bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_nullQuery1(){var foo_nullQuery1='bar';})"
+  },
   location: "/dev/null?query",
   sourceMap: "{\\"version\\":3,\\"names\\":[\\"foo_nullQuery1\\"],\\"sources\\":[\\"/dev/null?query\\"],\\"mappings\\":\\"AACQ,SAAAA,cAAeA,CAAA,EAEb,GAAI,CAAAA,cAAW,OACjB\\",\\"ignoreList\\":[]}"
 };
@@ -5336,7 +5716,9 @@ const foo = function foo_nullQuery1Factory({
 
 exports[`babel plugin generally strips queries from filename when injecting source maps 2`] = `
 "const _worklet_8167316224945_init_data = {
-  code: "(function foo_nullHash1(){var foo_nullHash1='bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_nullHash1(){var foo_nullHash1='bar';})"
+  },
   location: "/dev/null#hash",
   sourceMap: "{\\"version\\":3,\\"names\\":[\\"foo_nullHash1\\"],\\"sources\\":[\\"/dev/null#hash\\"],\\"mappings\\":\\"AACQ,SAAAA,aAAeA,CAAA,EAEb,GAAI,CAAAA,aAAW,OACjB\\",\\"ignoreList\\":[]}"
 };
@@ -5360,7 +5742,9 @@ const foo = function foo_nullHash1Factory({
 
 exports[`babel plugin generally strips queries from filename when injecting source maps 3`] = `
 "const _worklet_6204255084081_init_data = {
-  code: "(function foo_nullQueryHash1(){var foo_nullQueryHash1='bar';})",
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_nullQueryHash1(){var foo_nullQueryHash1='bar';})"
+  },
   location: "/dev/null?query#hash",
   sourceMap: "{\\"version\\":3,\\"names\\":[\\"foo_nullQueryHash1\\"],\\"sources\\":[\\"/dev/null?query#hash\\"],\\"mappings\\":\\"AACQ,SAAAA,kBAAeA,CAAA,EAEb,GAAI,CAAAA,kBAAW,OACjB\\",\\"ignoreList\\":[]}"
 };
@@ -5384,13 +5768,15 @@ const foo = function foo_nullQueryHash1Factory({
 
 exports[`babel plugin generally supports recursive calls 1`] = `
 "const a = 1;
-const _worklet_7456730356062_init_data = {
-  code: "(function foo_null1(t){const foo_null1=this._recur;const{a}=this.__closure;if(t>0){return a+foo_null1(t-1);}})",
+const _worklet_17473868606110_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function foo_null1(t){var foo_null1=this._recur;var{a}=this.__closure;if(t>0){return a+foo_null1(t-1);}})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 const foo = function foo_null1Factory({
-  _worklet_7456730356062_init_data,
+  _worklet_17473868606110_init_data,
   a
 }) {
   const _e = [new global.Error(), -2, -27];
@@ -5402,28 +5788,30 @@ const foo = function foo_null1Factory({
   foo.__closure = {
     a
   };
-  foo.__workletHash = 7456730356062;
+  foo.__workletHash = 17473868606110;
   foo.__pluginVersion = "x.y.z";
-  foo.__initData = _worklet_7456730356062_init_data;
+  foo.__initData = _worklet_17473868606110_init_data;
   foo.__stackDetails = _e;
   return foo;
 }({
-  _worklet_7456730356062_init_data,
+  _worklet_17473868606110_init_data,
   a
 });"
 `;
 
 exports[`babel plugin generally transforms 1`] = `
 "import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
-const _worklet_17019765756365_init_data = {
-  code: "(function null1(){const{offset}=this.__closure;return{transform:[{translateX:offset.value*255}]};})",
+const _worklet_9185539846573_init_data = {
+  __reanimated_workletCodeWrapper: {
+    [Symbol.for("__reanimated_workletCode")]: "(function null1(){var{offset}=this.__closure;return{transform:[{translateX:offset.value*255}]};})"
+  },
   location: "/dev/null",
   sourceMap: "\\"mock source map\\""
 };
 function Box() {
   const offset = useSharedValue(0);
   const animatedStyles = useAnimatedStyle(function null1Factory({
-    _worklet_17019765756365_init_data,
+    _worklet_9185539846573_init_data,
     offset
   }) {
     const _e = [new global.Error(), -2, -27];
@@ -5437,13 +5825,13 @@ function Box() {
     null1.__closure = {
       offset
     };
-    null1.__workletHash = 17019765756365;
+    null1.__workletHash = 9185539846573;
     null1.__pluginVersion = "x.y.z";
-    null1.__initData = _worklet_17019765756365_init_data;
+    null1.__initData = _worklet_9185539846573_init_data;
     null1.__stackDetails = _e;
     return null1;
   }({
-    _worklet_17019765756365_init_data,
+    _worklet_9185539846573_init_data,
     offset
   }));
   return <>

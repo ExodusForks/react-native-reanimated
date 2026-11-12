@@ -57,8 +57,18 @@ export type WorkletStackDetails = [
 
 type WorkletClosure = Record<string, unknown>;
 
-interface WorkletInitData {
-  /** Only when bytecode isn't toggled. */
+export interface WorkletInitData {
+  /**
+   * Exodus: the Babel plugin stores the code under
+   * `Symbol.for('__reanimated_workletCode')` in this wrapper instead of `code`.
+   */
+  __reanimated_workletCodeWrapper?: Record<symbol, string>;
+  /**
+   * Exodus: the serialized form of the wrapper, read natively on the Worklet
+   * Runtime.
+   */
+  __reanimated_workletCode?: string;
+  /** Upstream field; the Exodus plugin never emits it. */
   code?: string;
   /** Only in production builds and explicitly toggled. */
   bytecode?: ArrayBuffer;
@@ -95,7 +105,12 @@ export interface WorkletFactory<
 }
 
 export type ValueUnpacker = WorkletFunction<
-  [objectToUnpack: unknown, category?: string],
+  [
+    objectToUnpack: unknown,
+    category?: string,
+    remoteFunctionName?: string,
+    evaluateWorkletFunction?: () => () => unknown,
+  ],
   unknown
 >;
 

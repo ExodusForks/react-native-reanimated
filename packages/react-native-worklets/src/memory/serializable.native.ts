@@ -21,6 +21,12 @@ import type {
   SerializationData,
   Synchronizable,
 } from './types';
+import {
+  getInitDataCode,
+  unwrapWorkletCode,
+  WORKLET_CODE_KEY,
+  WORKLET_CODE_WRAPPER_KEY,
+} from './workletCode';
 
 const MAGIC_KEY = 'REANIMATED_MAGIC_KEY';
 
@@ -218,7 +224,7 @@ if (isBundleModeEnabled()) {
   // TODO: Do it programmatically.
   createSerializable.__bundleData = {
     imported: 'createSerializable',
-    source: require.resolveWeak('react-native-worklets'),
+    source: require.resolveWeak('@exodus/react-native-worklets'),
   };
 }
 
@@ -343,12 +349,27 @@ function cloneNull(): SerializableRef<null> {
   return WorkletsModule.createSerializableNull();
 }
 
+function assignReadOnly(
+  obj: Record<string, unknown>,
+  key: string,
+  value: unknown
+) {
+  Object.defineProperty(obj, key, {
+    __proto__: null,
+    value,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  } as PropertyDescriptor);
+  return obj;
+}
+
 function cloneObjectProperties<T extends object>(
   value: T,
   shouldPersistRemote: boolean,
   depth: number
 ): Record<string, unknown> {
-  const clonedProps: Record<string, unknown> = {};
+  const clonedProps: Record<string, unknown> = Object.create(null);
   for (const [key, element] of Object.entries(value)) {
     // We don't need to clone __initData field as it contains long strings
     // representing the worklet code, source map, and location, and we will
@@ -356,10 +377,23 @@ function cloneObjectProperties<T extends object>(
     if (key === '__initData' && clonedProps.__initData !== undefined) {
       continue;
     }
-    clonedProps[key] = createSerializable(
-      element,
-      shouldPersistRemote,
-      depth + 1
+    if (key === WORKLET_CODE_KEY) {
+      throw new Error(
+        '[Worklets] Worklet code can only be serialized from its wrapper.'
+      );
+    }
+    if (key === WORKLET_CODE_WRAPPER_KEY) {
+      assignReadOnly(
+        clonedProps,
+        WORKLET_CODE_KEY,
+        WorkletsModule.createSerializableString(unwrapWorkletCode(element))
+      );
+      continue;
+    }
+    assignReadOnly(
+      clonedProps,
+      key,
+      createSerializable(element, shouldPersistRemote, depth + 1)
     );
   }
   return clonedProps;
@@ -462,10 +496,10 @@ function cloneWorklet<TValue extends WorkletFunction>(
   // that the __initData field that contains long strings representing the
   // worklet code, source map, and location, will always be
   // serialized/deserialized once.
-  clonedProps.__initData = createSerializable(
-    value.__initData,
-    true,
-    depth + 1
+  assignReadOnly(
+    clonedProps,
+    '__initData',
+    createSerializable(value.__initData, true, depth + 1)
   );
 
   const clone = WorkletsModule.createSerializableWorklet(
@@ -566,13 +600,11 @@ function cloneSet(value: Set<unknown>): SerializableRef<Set<unknown>> {
   return clone;
 }
 
-function cloneRegExp(value: RegExp): SerializableRef<RegExp> {
-  const clone = WorkletsModule.createSerializableRegExp(
-    value.source,
-    value.flags
+function cloneRegExp(_value: RegExp): SerializableRef<RegExp> {
+  // disabled, contact appsec if needed: https://github.com/ExodusMovement/exodus-mobile/pull/24699#issuecomment-2709694172
+  throw new Error(
+    '[Worklets] RegExp has been disabled. Contact AppSec if needed.'
   );
-  serializableMappingCache.set(value, clone);
-  return clone;
 }
 
 function cloneError(value: Error): SerializableRef<Error> {
@@ -649,7 +681,7 @@ function cloneCustom<TValue extends object, TPacked = unknown>(
 const WORKLET_CODE_THRESHOLD = 255;
 
 function getWorkletCode(value: WorkletFunction) {
-  const code = value?.__initData?.code;
+  const code = getInitDataCode(value?.__initData);
   if (!code) {
     return 'unknown';
   }
